@@ -1,5 +1,19 @@
 {
   "dependencies": {
+    "com.neuecc.unirx": {
+      "version": "https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "284d5c50d3f1ddd9fa7df3d382ea904732a9c2ff"
+    },
+    "com.svermeulen.extenject": {
+      "version": "https://github.com/Mathijs-Bakker/Extenject.git?path=UnityProject/Assets/Plugins/Zenject/Source#",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "9958233dfbd64b6f58a87c47555446ca2f34d004"
+    },
     "com.unity.2d.animation": {
       "version": "5.0.4",
       "depth": 0,
