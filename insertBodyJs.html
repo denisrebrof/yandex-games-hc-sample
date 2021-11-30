@@ -1,0 +1,77 @@
+        <!-- Запуск рекламы при старте игры -->
+        <script type="text/javascript">
+              var player;
+              var sdk;
+              var payments = null;
+
+
+              YaGames.init({
+                adv: {
+                  onAdvClose: wasShown => {
+                    console.info('adv closed!');
+                  }
+                }
+              })
+                .then(ysdk => {
+                  sdk = ysdk;
+                <!--sdk.adv.showFullscreenAdv({ callbacks: {} });-->
+                });
+        </script>
+
+        <!-- Обработка рекламы в нужное время -->
+        <script>
+              function showFullscrenAd() {
+                sdk.adv.showFullscreenAdv({
+                  callbacks: {
+                    onClose: function (wasShown) {
+                      unityInstance.SendMessage('YandexSDK', 'OnInterstitialShown');
+                    },
+                    onError: function (error) {
+                      unityInstance.SendMessage('YandexSDK', 'OnInterstitialFailed', error);
+                    }
+                  }
+                })
+              }
+        </script>
+
+        <!-- Обработка рекламы за вознаграждение -->
+        <script>
+              function showRewardedAd(id) {
+                sdk.adv.showRewardedVideo({
+                  callbacks: {
+                    onOpen: () => {
+                      unityInstance.SendMessage('YandexSDK', 'OnRewardedOpen', id);
+                      console.log('Video ad open. Id: ' + id);
+                    },
+                    onRewarded: () => {
+                      unityInstance.SendMessage('YandexSDK', 'OnRewarded', id);
+                      console.log('Rewarded! Id: ' + id);
+                    },
+                    onClose: () => {
+                      unityInstance.SendMessage('YandexSDK', 'OnRewardedClose', id);
+                      console.log('Video ad closed. Id: ' + id);
+                    },
+                    onError: (e) => {
+                      var data = { "id": id, "error": error };
+                      unityInstance.SendMessage('YandexSDK', 'OnRewardedError', JSON.stringify(data));
+                      console.log('Error while open video ad:', e);
+                    }
+                  }
+                })
+              }
+        </script>
+
+        <!-- Получение языка -->
+        <script>
+              function getLang() {
+                return sdk.environment.browser.lang
+              }
+        </script>
+		
+		<!-- Получение устройства -->
+        <script>
+              function getDeviceType() {
+                return sdk.deviceInfo.type
+              }
+        </script>
+
