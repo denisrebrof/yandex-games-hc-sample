@@ -13,7 +13,7 @@ namespace Purchases.data.model
         public int rewardedVideoCount = 1;
         public PurchaseType Type;
 
-        public PurchaseEntity(long id, string name, long passRewardLevelId, int coinsCost, int rewardedVideoCount = -1, PurchaseType type)
+        public PurchaseEntity(long id, string name, long passRewardLevelId, int coinsCost, int rewardedVideoCount = -1, PurchaseType type = PurchaseType.Coins)
         {
             Id = id;
             Name = name;
@@ -22,5 +22,11 @@ namespace Purchases.data.model
             this.rewardedVideoCount = rewardedVideoCount;
             Type = type;
         }
+        
+        public Purchase toPurchase() => new Purchase(
+            Id,
+            Name,
+            Type
+        );
     }
 }
