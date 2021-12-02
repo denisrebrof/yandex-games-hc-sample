@@ -1,4 +1,4 @@
-﻿namespace Purchases.domain
+﻿namespace Purchases.domain.repositories
 {
     public interface IRewardedVideoPurchaseRepository
     {

@@ -1,4 +1,5 @@
 ﻿using Purchases.domain;
+using Purchases.domain.repositories;
 using Zenject;
 
 namespace Purchases.data

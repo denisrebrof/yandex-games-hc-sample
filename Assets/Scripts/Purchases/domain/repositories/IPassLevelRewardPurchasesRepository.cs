@@ -1,7 +1,6 @@
-﻿using System;
-using Purchases.domain.model;
+﻿using Purchases.domain.model;
 
-namespace Purchases.domain
+namespace Purchases.domain.repositories
 {
     public interface IPassLevelRewardPurchasesRepository
     {

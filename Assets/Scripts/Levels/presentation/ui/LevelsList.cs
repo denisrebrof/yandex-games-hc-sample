@@ -1,10 +1,9 @@
 ﻿using Levels.domain;
 using Levels.domain.model;
-using Levels.presentation.ui;
 using UnityEngine;
 using Zenject;
 
-namespace Levels.presentation
+namespace Levels.presentation.ui
 {
     public class LevelsList : MonoBehaviour
     {

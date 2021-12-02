@@ -6,6 +6,7 @@ namespace Levels.domain
     public interface ILevelsRepository
     {
         List<Level> GetLevels();
-        void CompleteLevel(long levelId);
+        Level GetLevel(long levelId);
+        void SetLevelCompleted(long levelId);
     }
 }

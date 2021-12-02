@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Levels.presentation.scene
+namespace Levels.presentation.loader
 {
     public class LevelSceneLoader : MonoBehaviour
     {

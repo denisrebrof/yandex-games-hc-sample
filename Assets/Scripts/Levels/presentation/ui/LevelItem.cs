@@ -24,5 +24,10 @@ namespace Levels.presentation.ui
         {
             if (levelId.HasValue) itemController.OnItemClick(levelId.Value);
         }
+        
+        public interface ILevelItemController
+        {
+            void OnItemClick(long levelId);
+        }
     }
 }

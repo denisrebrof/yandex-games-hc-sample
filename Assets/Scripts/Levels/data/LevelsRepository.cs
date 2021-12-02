@@ -16,6 +16,13 @@ namespace Levels.data
 
         public List<Level> GetLevels() => levelsDao.GetLevelEntities().Select(GetLevel).ToList();
 
+        public Level GetLevel(long levelId)
+        {
+            var index = Convert.ToInt32(levelId);
+            var entity = GetById(levelId);
+            return GetLevel(entity, index);
+        }
+
         private Level GetLevel(LevelEntity entity, int number)
         {
             var id = Convert.ToInt64(number);
@@ -23,14 +30,16 @@ namespace Levels.data
             return new Level(id, number, completed, entity.reward);
         }
 
-        public void CompleteLevel(long levelId) => completedStateDao.SetCompleted(levelId);
+        public void SetLevelCompleted(long levelId) => completedStateDao.SetCompleted(levelId);
 
-        public GameObject GetLevelScene(long levelId)
+        public GameObject GetLevelScene(long levelId) => GetById(levelId).scenePrefab;
+
+        private LevelEntity GetById(long levelId)
         {
             var index = Convert.ToInt32(levelId);
-            return levelsDao.GetLevelEntities()[index].scenePrefab;
+            return levelsDao.GetLevelEntities()[index];
         }
-        
+
         public interface ILevelsDao
         {
             public List<LevelEntity> GetLevelEntities();

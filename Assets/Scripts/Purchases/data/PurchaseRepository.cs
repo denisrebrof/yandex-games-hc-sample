@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Purchases.data.model;
-using Purchases.domain;
 using Purchases.domain.model;
+using Purchases.domain.repositories;
 using Zenject;
 
 namespace Purchases.data
@@ -16,5 +14,10 @@ namespace Purchases.data
             .GetLevelEntities()
             .Select(entity => entity.toPurchase())
             .ToList();
+
+        public Purchase GetById(long id) => entitiesDao
+            .GetLevelEntities()
+            .First(entity => entity.Id == id)
+            .toPurchase();
     }
 }

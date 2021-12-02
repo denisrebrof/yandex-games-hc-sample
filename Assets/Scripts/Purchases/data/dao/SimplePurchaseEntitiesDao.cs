@@ -3,10 +3,10 @@ using System.Linq;
 using Purchases.data.model;
 using UnityEngine;
 
-namespace Purchases.data
+namespace Purchases.data.dao
 {
-    [CreateAssetMenu(menuName = "Purchases/PurchasesDao/SimplePurchasesDao")]
-    public class SimplePurchaseEntitiessDao: ScriptableObject, IPurchaseEntitiesDao
+    [CreateAssetMenu(menuName = "Purchases/PurchasesDao/SimplePurchaseEntitiesDao")]
+    public class SimplePurchaseEntitiesDao: ScriptableObject, IPurchaseEntitiesDao
     {
         [SerializeField]
         private List<PurchaseEntity> entities = new List<PurchaseEntity>();

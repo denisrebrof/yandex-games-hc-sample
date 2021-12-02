@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Levels.presentation.scene
+namespace Levels.presentation.loader
 {
     [RequireComponent(typeof(Animator))]
-    public class AnimatorLevelLoaderAnimator : MonoBehaviour, LevelSceneLoader.ILevelLoadingTransition
+    public class AnimatorLevelLoaderTransition : MonoBehaviour, LevelSceneLoader.ILevelLoadingTransition
     {
         [SerializeField] private string animatorTrigger = "SwitchLevel";
         private Animator cameraAnimator;

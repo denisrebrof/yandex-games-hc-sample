@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Purchases.domain;
 using Purchases.domain.model;
+using Purchases.domain.repositories;
 using Zenject;
 
 namespace Purchases.data
