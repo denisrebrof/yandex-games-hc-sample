@@ -1,7 +1,6 @@
-﻿using Balance.domain;
-using Zenject;
+﻿using Zenject;
 
-namespace Balance
+namespace Balance.domain
 {
     public class DecreaseBalanceUseCase
     {

@@ -1,5 +1,4 @@
-﻿using Levels.domain.model;
-using Zenject;
+﻿using Zenject;
 
 namespace Levels.domain
 {
@@ -10,14 +9,12 @@ namespace Levels.domain
         [Inject] private ILastRewardRepository lastRewardRepository;
         [Inject] private SetNextCurrentLevelUseCase setNextCurrentLevelUseCase;
 
-        public CompleteLevelResult CompleteCurrentLevel()
+        public void CompleteCurrentLevel()
         {
             var currentLevel = currentLevelRepository.GetCurrentLevel();
             setNextCurrentLevelUseCase.SetNextCurrentLevel();
-            var nextLevel = currentLevelRepository.GetCurrentLevel();
             rewardHandler.HandleReward(currentLevel.Reward);
             lastRewardRepository.Set(currentLevel.Reward);
-            return new CompleteLevelResult(currentLevel, nextLevel);
         }
 
         public interface IRewardHandler

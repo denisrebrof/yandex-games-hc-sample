@@ -8,13 +8,8 @@ namespace Levels.presentation
     public class CompleteLevelController: MonoBehaviour, ILevelCompletedListener
     {
         [SerializeField] private UnityAction onLevelCompleted;
-        [SerializeField] private UnityAction<int> rewardListener;
         [Inject] private CompleteCurrentLevelUseCase completeCurrentLevelUseCase;
         
-        public void CompleteCurrentLevel()
-        {
-            var completeResult = completeCurrentLevelUseCase.CompleteCurrentLevel();
-            var reward = completeResult.CompletedLevel.Reward;
-        }
+        public void CompleteCurrentLevel() => completeCurrentLevelUseCase.CompleteCurrentLevel();
     }
 }
