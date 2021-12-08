@@ -23,16 +23,16 @@ namespace Levels.data
             return GetLevel(entity, index);
         }
 
+        public void SetLevelCompleted(long levelId) => completedStateDao.SetCompleted(levelId);
+
+        public GameObject GetLevelScene(long levelId) => GetById(levelId).scenePrefab;
+
         private Level GetLevel(LevelEntity entity, int number)
         {
             var id = Convert.ToInt64(number);
             var completed = completedStateDao.IsCompleted(id);
             return new Level(id, number, completed, entity.reward);
         }
-
-        public void SetLevelCompleted(long levelId) => completedStateDao.SetCompleted(levelId);
-
-        public GameObject GetLevelScene(long levelId) => GetById(levelId).scenePrefab;
 
         private LevelEntity GetById(long levelId)
         {

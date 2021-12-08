@@ -1,15 +1,19 @@
-﻿using Levels.domain;
+﻿using Doozy.Engine;
+using Levels.domain;
 using UnityEngine;
-using UnityEngine.Events;
 using Zenject;
 
 namespace Levels.presentation
 {
-    public class CompleteLevelController: MonoBehaviour, ILevelCompletedListener
+    public class CompleteLevelController : MonoBehaviour, ILevelCompletedListener
     {
-        [SerializeField] private UnityAction onLevelCompleted;
+        [SerializeField] private string uiEventName = "LevelCompleted";
         [Inject] private CompleteCurrentLevelUseCase completeCurrentLevelUseCase;
-        
-        public void CompleteCurrentLevel() => completeCurrentLevelUseCase.CompleteCurrentLevel();
+
+        public void CompleteCurrentLevel()
+        {
+            completeCurrentLevelUseCase.CompleteCurrentLevel();
+            GameEventMessage.SendEvent(uiEventName);
+        }
     }
 }

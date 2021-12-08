@@ -6,6 +6,5 @@ namespace Levels.domain
     {
         void SetCurrentLevel(long levelId);
         Level GetCurrentLevel();
-        void SetCurrentLevelCompleted();
     }
 }

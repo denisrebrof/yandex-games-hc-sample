@@ -551,7 +551,22 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: dUI_MANAGER
+    4: dUI_MANAGER
+    7: dUI_MANAGER
+    13: dUI_MANAGER
+    14: dUI_MANAGER
+    19: dUI_MANAGER
+    21: dUI_MANAGER
+    25: dUI_MANAGER
+    27: dUI_MANAGER
+    28: dUI_MANAGER
+    29: dUI_MANAGER
+    30: dUI_MANAGER
+    31: dUI_MANAGER
+    32: dUI_MANAGER
+    33: dUI_MANAGER
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

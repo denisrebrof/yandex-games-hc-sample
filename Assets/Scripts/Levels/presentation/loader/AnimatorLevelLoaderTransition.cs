@@ -15,8 +15,8 @@ namespace Levels.presentation.loader
 
         public void StartAnimation(Action onSceneHidden = null, Action onCompleted = null)
         {
-            this.onHidden = onSceneHidden;
-            this.onComplete = onCompleted;
+            onHidden = onSceneHidden;
+            onComplete = onCompleted;
             cameraAnimator.SetTrigger(animatorTrigger);
         }
 

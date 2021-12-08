@@ -8,7 +8,7 @@ namespace Levels.presentation.ui
     public class LevelsList : MonoBehaviour
     {
         [SerializeField] private Transform listRoot;
-        [SerializeField] private LevelItem itemPrefab;
+        [Inject] private LevelItem.Factory levelItemFactory;
         [Inject] private ILevelsRepository levelsRepository;
 
         private void Awake()
@@ -21,7 +21,8 @@ namespace Levels.presentation.ui
 
         private void CreateItem(Level level)
         {
-            var item = Instantiate(itemPrefab, listRoot);
+            var item = levelItemFactory.Create();
+            item.transform.SetParent(listRoot);
             item.Setup(level);
         }
     }

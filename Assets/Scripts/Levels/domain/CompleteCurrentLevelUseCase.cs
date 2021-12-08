@@ -4,6 +4,7 @@ namespace Levels.domain
 {
     public class CompleteCurrentLevelUseCase
     {
+        [Inject] private ILevelsRepository levelsRepository;
         [Inject] private ICurrentLevelRepository currentLevelRepository;
         [Inject] private IRewardHandler rewardHandler;
         [Inject] private ILastRewardRepository lastRewardRepository;
@@ -15,6 +16,7 @@ namespace Levels.domain
             setNextCurrentLevelUseCase.SetNextCurrentLevel();
             rewardHandler.HandleReward(currentLevel.Reward);
             lastRewardRepository.Set(currentLevel.Reward);
+            levelsRepository.SetLevelCompleted(currentLevel.ID);
         }
 
         public interface IRewardHandler

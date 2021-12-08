@@ -4,7 +4,7 @@ namespace Levels.data
 {
     public class LastRewardInMemoryRepository : ILastRewardRepository
     {
-        private int reward = 0;
+        private int reward;
 
         public void Set(int amount) => reward = amount;
 
