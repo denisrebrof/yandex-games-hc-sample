@@ -22,7 +22,7 @@ namespace Levels.presentation.ui
             this.levelsRepository = levelsRepository;
         }
 
-        private void Awake()
+        private void OnEnable()
         {
             if (levelId == null)
                 return;

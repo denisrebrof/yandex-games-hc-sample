@@ -10,7 +10,8 @@ namespace Levels.data.dao
         {
             var prefKey = GetPrefKey(levelId);
             var prefValue = PlayerPrefs.GetInt(prefKey, (int) CompletedState.NotCompleted);
-            return (CompletedState) prefValue == CompletedState.Completed;
+            var prefstate = (CompletedState)prefValue;
+            return prefstate == CompletedState.Completed;
         }
 
         public void SetCompleted(long levelId)
