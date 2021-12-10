@@ -1,6 +1,7 @@
 ﻿using Levels.presentation;
 using Levels.presentation.loader;
 using Levels.presentation.ui;
+using Purchases.presentation.ui;
 using UnityEngine;
 using Zenject;
 
@@ -14,7 +15,10 @@ namespace Purchases._di
             //Presentation
             //UI
             Container.Bind<LevelItem.ILevelItemController>().To<DefaultLevelItemController>().AsSingle();
-            Container.BindFactory<Purchas, LevelItem.Factory>().FromComponentInNewPrefab(levelItemPrefab);
+            //Item Factories
+            Container.BindFactory<CoinsPurchaseItem, CoinsPurchaseItem.Factory>().AsCached();
+            Container.BindFactory<PassLevelRewardItem, PassLevelRewardItem.Factory>().AsCached();
+            // Container.BindFactory<CoinsPurchaseItem, CoinsPurchaseItem.Factory>().AsCached();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Purchases.presentation.ui
     public class PurchaseList : MonoBehaviour
     {
         [SerializeField] private Transform listRoot;
-        [Inject] private PurchaseItem.Factory purchaseItemFactory;
+        [SerializeReference] private IPurchaseItemFactory purchaseItemFactory;
         [Inject] private IPurchaseRepository purchasesRepository;
 
         private void Awake()
