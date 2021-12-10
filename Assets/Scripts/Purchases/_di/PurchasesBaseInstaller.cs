@@ -3,6 +3,7 @@ using Purchases.data;
 using Purchases.data.dao;
 using Purchases.domain;
 using Purchases.domain.repositories;
+using Purchases.presentation.ui;
 using UnityEngine;
 using Zenject;
 
@@ -37,6 +38,10 @@ namespace Purchases._di
             Container
                 .Bind<PurchasedStateUseCase.ILevelPassedStateProvider>()
                 .To<LevelPassedStateProviderAdapter>()
+                .AsSingle();
+            Container
+                .Bind<PassLevelRewardItem.ILevelNumberProvider>()
+                .To<LevelNumberProviderAdapter>()
                 .AsSingle();
         }
     }
