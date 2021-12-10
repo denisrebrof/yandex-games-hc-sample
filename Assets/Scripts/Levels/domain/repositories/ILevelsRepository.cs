@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Levels.domain.model;
 
-namespace Levels.domain
+namespace Levels.domain.repositories
 {
     public interface ILevelsRepository
     {

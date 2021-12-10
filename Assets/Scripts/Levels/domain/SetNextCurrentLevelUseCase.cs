@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Levels.domain.model;
+using Levels.domain.repositories;
 using Zenject;
 
 namespace Levels.domain

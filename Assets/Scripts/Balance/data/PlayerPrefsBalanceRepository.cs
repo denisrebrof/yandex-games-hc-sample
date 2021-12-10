@@ -1,4 +1,5 @@
 ﻿using Balance.domain;
+using Balance.domain.repositories;
 using UnityEngine;
 
 namespace Balance.data

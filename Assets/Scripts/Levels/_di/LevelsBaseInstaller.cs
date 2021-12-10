@@ -1,7 +1,11 @@
+using Balance.data;
+using Balance.domain;
+using Balance.domain.repositories;
 using Levels.adapters;
 using Levels.data;
 using Levels.data.dao;
 using Levels.domain;
+using Levels.domain.repositories;
 using UnityEngine;
 using Zenject;
 
@@ -23,12 +27,15 @@ namespace Levels._di
             Container.Bind<ILevelsRepository>().To<LevelsRepository>().AsCached();
             Container.Bind<ILevelSceneObjectRepository>().To<LevelsRepository>().AsCached();
             Container.Bind<ICurrentLevelRepository>().To<CurrentLevelRepository>().AsSingle();
-            Container.Bind<ILastRewardRepository>().To<LastRewardInMemoryRepository>().AsSingle();
+            Container.Bind<IRewardRepository>().To<RewardInMemoryRepository>().AsSingle();
             //UseCases
             Container.Bind<CompleteCurrentLevelUseCase>().ToSelf().AsSingle();
             Container.Bind<SetNextCurrentLevelUseCase>().ToSelf().AsSingle();
             //Adapters
-            Container.Bind<CompleteCurrentLevelUseCase.IRewardHandler>().To<DefaultRewardHandlerAdapter>().AsSingle();
+            Container
+                .Bind<CompleteCurrentLevelUseCase.IRewardHandler>()
+                .To<DefaultLevelRewardHandlerAdapter>()
+                .AsSingle();
         }
     }
 }

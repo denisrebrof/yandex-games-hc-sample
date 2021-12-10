@@ -1,20 +1,18 @@
-﻿using Balance.domain;
-using Balance.domain.repositories;
+﻿using Balance.domain.repositories;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace Balance.presentation.ui
 {
-    [RequireComponent(typeof(Text))]
-    public class SimpleBalanceText : MonoBehaviour
+    public class DefaultBalanceText: MonoBehaviour
     {
         [Inject] private IBalanceRepository balanceRepository;
-        private Text target;
+        [SerializeField] private Text target;
 
-        private void Awake() => target = GetComponent<Text>();
+        private void OnEnable() => UpdateBalanceText();
 
-        private void OnEnable()
+        public void UpdateBalanceText()
         {
             var balance = balanceRepository.GetBalance();
             target.text = balance.ToString();

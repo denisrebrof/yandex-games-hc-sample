@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Levels.domain
+namespace Levels.domain.repositories
 {
     public interface ILevelSceneObjectRepository
     {

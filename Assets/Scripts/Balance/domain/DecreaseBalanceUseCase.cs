@@ -1,4 +1,5 @@
-﻿using Zenject;
+﻿using Balance.domain.repositories;
+using Zenject;
 
 namespace Balance.domain
 {

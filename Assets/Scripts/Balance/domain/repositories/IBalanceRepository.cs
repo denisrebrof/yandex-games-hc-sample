@@ -1,4 +1,4 @@
-﻿namespace Balance.domain
+﻿namespace Balance.domain.repositories
 {
     public interface IBalanceRepository
     {
