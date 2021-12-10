@@ -79,7 +79,7 @@ MonoBehaviour:
   m_height: 128
   m_width: 216
   m_x: 180
-  m_y: -336
+  m_y: -168
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: 8456b683-a1df-448e-97ac-86ad341b83ee
@@ -90,8 +90,14 @@ MonoBehaviour:
   - Category: General
     InstantAction: 0
     Name: LevelsListScreen
-  m_onEnterHideViews: []
-  m_onExitShowViews: []
+  m_onEnterHideViews:
+  - Category: General
+    InstantAction: 0
+    Name: SettingsPanel
+  m_onExitShowViews:
+  - Category: General
+    InstantAction: 0
+    Name: SettingsPanel
   m_onExitHideViews:
   - Category: General
     InstantAction: 0
@@ -186,14 +192,7 @@ MonoBehaviour:
   m_inputSockets: []
   m_outputSockets:
   - m_connectionMode: 0
-    m_connections:
-    - m_inputConnectionPoint: {x: -2, y: 4}
-      m_outputConnectionPoint: {x: 202, y: 4}
-      m_id: f299fc81-66c2-47a5-b7d5-110f2513acf8
-      m_inputNodeId: f955d5cc-0ca3-40eb-9bea-37c1f1b8ed2e
-      m_inputSocketId: 1670d790-608c-49b9-8768-dfb23701445f
-      m_outputNodeId: cd3806b2-9a27-4661-81e3-721a564da83f
-      m_outputSocketId: 8d0fe040-f53e-4490-90f6-eb4371cd984e
+    m_connections: []
     m_connectionPoints:
     - {x: -2, y: 4}
     - {x: 202, y: 4}
@@ -366,8 +365,14 @@ MonoBehaviour:
   - Category: General
     InstantAction: 0
     Name: LevelScreen
-  m_onEnterHideViews: []
-  m_onExitShowViews: []
+  m_onEnterHideViews:
+  - Category: General
+    InstantAction: 0
+    Name: Background
+  m_onExitShowViews:
+  - Category: General
+    InstantAction: 0
+    Name: Background
   m_onExitHideViews:
   - Category: General
     InstantAction: 0
@@ -425,7 +430,7 @@ MonoBehaviour:
   m_height: 132
   m_width: 216
   m_x: -96
-  m_y: -468
+  m_y: -312
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: 8456b683-a1df-448e-97ac-86ad341b83ee
@@ -623,14 +628,7 @@ MonoBehaviour:
   ErrorDuplicateNameFoundInGraph: 0
   m_inputSockets:
   - m_connectionMode: 1
-    m_connections:
-    - m_inputConnectionPoint: {x: -2, y: 4}
-      m_outputConnectionPoint: {x: 202, y: 4}
-      m_id: f299fc81-66c2-47a5-b7d5-110f2513acf8
-      m_inputNodeId: f955d5cc-0ca3-40eb-9bea-37c1f1b8ed2e
-      m_inputSocketId: 1670d790-608c-49b9-8768-dfb23701445f
-      m_outputNodeId: cd3806b2-9a27-4661-81e3-721a564da83f
-      m_outputSocketId: 8d0fe040-f53e-4490-90f6-eb4371cd984e
+    m_connections: []
     m_connectionPoints:
     - {x: -2, y: 4}
     - {x: 202, y: 4}
@@ -696,13 +694,19 @@ MonoBehaviour:
   m_onEnterShowViews:
   - Category: General
     InstantAction: 0
-    Name: SettingsScreen
-  m_onEnterHideViews: []
-  m_onExitShowViews: []
+    Name: Unnamed
+  m_onEnterHideViews:
+  - Category: General
+    InstantAction: 0
+    Name: SettingsPanel
+  m_onExitShowViews:
+  - Category: General
+    InstantAction: 0
+    Name: SettingsPanel
   m_onExitHideViews:
   - Category: General
     InstantAction: 0
-    Name: SettingsScreen
+    Name: Unnamed
 --- !u!114 &-917902573163582765
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -870,8 +874,6 @@ MonoBehaviour:
   - {fileID: 5102405877484414533}
   - {fileID: 4205140236240398139}
   - {fileID: -7859048420327365549}
-  - {fileID: -2545108892389034020}
-  - {fileID: -6465565475086015765}
   - {fileID: 4244810218922126292}
   - {fileID: -4936481406556620702}
   - {fileID: 8918676874365523305}
@@ -880,7 +882,7 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: 8456b683-a1df-448e-97ac-86ad341b83ee
-  m_lastModified: 132834532148918045
+  m_lastModified: 132835329735948379
 --- !u!114 &2914750626192911932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1089,13 +1091,6 @@ MonoBehaviour:
       m_outputNodeId: 9dfb4793-73a2-4841-a1d8-5641fb080a40
       m_outputSocketId: 786bb064-b0a7-4b4c-aedc-bcb0504fabce
     - m_inputConnectionPoint: {x: 202, y: 4}
-      m_outputConnectionPoint: {x: 202, y: 4}
-      m_id: 7eb2536d-7a34-404f-816a-33477edd45a9
-      m_inputNodeId: c57ed493-4847-43b7-ba7a-e849b6de3707
-      m_inputSocketId: fc4e00b8-e978-4090-a39d-b380152aa42e
-      m_outputNodeId: f955d5cc-0ca3-40eb-9bea-37c1f1b8ed2e
-      m_outputSocketId: c333a003-aa9f-4800-ad88-9cdf11e586f9
-    - m_inputConnectionPoint: {x: 202, y: 4}
       m_outputConnectionPoint: {x: -2, y: 4}
       m_id: d0580300-fd0d-4081-b60c-26e848d8ddcd
       m_inputNodeId: c57ed493-4847-43b7-ba7a-e849b6de3707
@@ -1284,7 +1279,7 @@ MonoBehaviour:
   m_height: 132
   m_width: 216
   m_x: -96
-  m_y: -336
+  m_y: -168
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: 8456b683-a1df-448e-97ac-86ad341b83ee
@@ -1526,7 +1521,7 @@ MonoBehaviour:
   m_height: 128
   m_width: 216
   m_x: 180
-  m_y: -468
+  m_y: -312
   m_minimumInputSocketsCount: 1
   m_minimumOutputSocketsCount: 1
   m_graphId: 8456b683-a1df-448e-97ac-86ad341b83ee
@@ -1537,8 +1532,14 @@ MonoBehaviour:
   - Category: General
     InstantAction: 0
     Name: StoreScreen
-  m_onEnterHideViews: []
-  m_onExitShowViews: []
+  m_onEnterHideViews:
+  - Category: General
+    InstantAction: 0
+    Name: SettingsPanel
+  m_onExitShowViews:
+  - Category: General
+    InstantAction: 0
+    Name: SettingsPanel
   m_onExitHideViews:
   - Category: General
     InstantAction: 0
@@ -1633,8 +1634,14 @@ MonoBehaviour:
   - Category: General
     InstantAction: 0
     Name: LevelCompletedScreen
-  m_onEnterHideViews: []
-  m_onExitShowViews: []
+  m_onEnterHideViews:
+  - Category: General
+    InstantAction: 0
+    Name: SettingsPanel
+  m_onExitShowViews:
+  - Category: General
+    InstantAction: 0
+    Name: SettingsPanel
   m_onExitHideViews:
   - Category: General
     InstantAction: 0

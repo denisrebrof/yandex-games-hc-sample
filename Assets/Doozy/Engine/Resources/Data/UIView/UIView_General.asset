@@ -21,4 +21,5 @@ MonoBehaviour:
   - LevelCompletedScreen
   - LevelsListScreen
   - StoreScreen
-  - SettingsScreen
+  - SettingsPanel
+  - Background
