@@ -1,5 +1,4 @@
-﻿using Balance.domain;
-using Balance.domain.repositories;
+﻿using Balance.domain.repositories;
 
 namespace Balance.data
 {

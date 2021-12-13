@@ -1,17 +1,36 @@
-﻿using Purchases.domain.model;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using System;
+using Purchases.domain.model;
+using Zenject;
 
 namespace Purchases.presentation.ui
 {
-    public class DefaultPurchaseItemFactory: MonoBehaviour, IPurchaseItemFactory
+    public class DefaultPurchaseItemFactory : IPurchaseItemFactory
     {
-        [SerializeField] private CoinsPurchaseItem coinsPurchaseItemPrefab;
-        [SerializeField] private PassLevelRewardItem passLevelRewardItemPrefab;
-        // [SerializeField] private CoinsPurchaseItem coinsPurchaseItemPrefab;
+        [Inject] private CoinsPurchaseItem.Factory coinsPurchaseItemFactory;
+
+        [Inject] private PassLevelRewardPurchaseItem.Factory passLevelRewardItemFactory;
+
+        [Inject] private RewardedVideoPurchaseItem.Factory rewardedVideoItemFactory;
+
         public PurchaseItem Create(PurchaseType type)
         {
-            
+            PurchaseItem item;
+            switch (type)
+            {
+                case PurchaseType.Coins:
+                    item = coinsPurchaseItemFactory.Create();
+                    break;
+                case PurchaseType.RewardedVideo:
+                    item = rewardedVideoItemFactory.Create();
+                    break;
+                case PurchaseType.PassLevelReward:
+                    item = passLevelRewardItemFactory.Create();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            }
+
+            return item;
         }
     }
 }

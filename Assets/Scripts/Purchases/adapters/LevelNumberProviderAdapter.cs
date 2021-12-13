@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Purchases.adapters
 {
-    public class LevelNumberProviderAdapter : PassLevelRewardItem.ILevelNumberProvider
+    public class LevelNumberProviderAdapter : PassLevelRewardPurchaseItem.ILevelNumberProvider
     {
         [Inject] private IPassLevelRewardPurchasesRepository passLevelRewardPurchasesRepository;
         [Inject] private ILevelsRepository levelsRepository;

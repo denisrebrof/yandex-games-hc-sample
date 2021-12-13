@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Purchases.presentation.ui
 {
-    public class PassLevelRewardItem: PurchaseItem
+    public class PassLevelRewardPurchaseItem: PurchaseItem
     {
         [Inject] private ILevelNumberProvider levelNumberProvider;
 
@@ -18,7 +18,7 @@ namespace Purchases.presentation.ui
             labelRoot.SetActive(!purchasedState);
         }
 
-        public class Factory : PlaceholderFactory<PassLevelRewardItem> { }
+        public class Factory : PlaceholderFactory<PassLevelRewardPurchaseItem> { }
         
         public interface ILevelNumberProvider
         {

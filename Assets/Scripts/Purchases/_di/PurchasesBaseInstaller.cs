@@ -40,7 +40,7 @@ namespace Purchases._di
                 .To<LevelPassedStateProviderAdapter>()
                 .AsSingle();
             Container
-                .Bind<PassLevelRewardItem.ILevelNumberProvider>()
+                .Bind<PassLevelRewardPurchaseItem.ILevelNumberProvider>()
                 .To<LevelNumberProviderAdapter>()
                 .AsSingle();
         }
