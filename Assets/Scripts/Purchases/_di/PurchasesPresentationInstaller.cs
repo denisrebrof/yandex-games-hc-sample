@@ -15,7 +15,7 @@ namespace Purchases._di
         {
             //Presentation
             //UI
-            Container.Bind<LevelItem.ILevelItemController>().To<DefaultLevelItemController>().AsSingle();
+            Container.Bind<PurchaseItem.IPurchaseItemController>().To<DefaultPurchaseItemController>().FromNew().AsTransient();
             //Item Factories
             Container.BindFactory<CoinsPurchaseItem, CoinsPurchaseItem.Factory>()
                 .FromComponentInNewPrefab(coinsPurchaseItemPrefab);

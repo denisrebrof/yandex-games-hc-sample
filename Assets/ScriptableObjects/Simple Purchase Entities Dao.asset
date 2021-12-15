@@ -16,6 +16,24 @@ MonoBehaviour:
   - Id: 0
     Name: DefItem
     passRewardLevelId: 0
-    coinsCost: 0
+    coinsCost: 10
     rewardedVideoCount: 0
     Type: 0
+  - Id: 1
+    Name: DefItem
+    passRewardLevelId: 0
+    coinsCost: 20
+    rewardedVideoCount: 0
+    Type: 0
+  - Id: 2
+    Name: DefItem
+    passRewardLevelId: 0
+    coinsCost: 0
+    rewardedVideoCount: 1
+    Type: 1
+  - Id: 3
+    Name: DefItem
+    passRewardLevelId: 3
+    coinsCost: 0
+    rewardedVideoCount: 0
+    Type: 2

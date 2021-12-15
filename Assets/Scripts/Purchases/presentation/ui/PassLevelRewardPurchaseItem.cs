@@ -14,7 +14,7 @@ namespace Purchases.presentation.ui
         protected override void Setup(long purchaseId, bool purchasedState)
         {
             base.Setup(purchaseId, purchasedState);
-            levelText.text = levelNumberProvider.GetLevelNumber(purchaseId).ToString();
+            levelText.text = "LVL " + levelNumberProvider.GetLevelNumber(purchaseId);
             labelRoot.SetActive(!purchasedState);
         }
 

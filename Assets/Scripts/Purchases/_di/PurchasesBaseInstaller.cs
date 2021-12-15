@@ -28,11 +28,13 @@ namespace Purchases._di
             Container.Bind<IPassLevelRewardPurchasesRepository>().To<PassLevelRewardPurchasesRepository>().AsSingle();
             Container.Bind<IRewardedVideoPurchaseRepository>().To<RewardedVideoPurchaseRepository>().AsSingle();
             //UseCases
-            Container.Bind<ExecutePurchaseUseCase>().ToSelf().AsSingle();
+            Container.Bind<CoinsPurchaseUseCase>().ToSelf().AsSingle();
             Container.Bind<PurchasedStateUseCase>().ToSelf().AsSingle();
+            Container.Bind<PurchaseAvailableUseCase>().ToSelf().AsSingle();
+            Container.Bind<RewardedVideoPurchaseUseCase>().ToSelf().AsSingle();
             //Adapters
             Container
-                .Bind<ExecutePurchaseUseCase.IBalanceAccessProvider>()
+                .Bind<IBalanceAccessProvider>()
                 .To<BalanceAccessProviderAdapter>()
                 .AsSingle();
             Container
@@ -42,6 +44,14 @@ namespace Purchases._di
             Container
                 .Bind<PassLevelRewardPurchaseItem.ILevelNumberProvider>()
                 .To<LevelNumberProviderAdapter>()
+                .AsSingle();
+            Container
+                .Bind<RewardedVideoPurchaseUseCase.IRewardedVideoPurchasePresenterAdapter>()
+                .To<RewardedVideoPurchasePresenterAdapter>()
+                .AsSingle();
+            Container
+                .Bind<DefaultPurchaseItemController.IPurchaseItemSelectionAdapter>()
+                .To<PurchaseItemSelectionAdapter>()
                 .AsSingle();
         }
     }

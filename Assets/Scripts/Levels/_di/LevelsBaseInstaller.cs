@@ -1,6 +1,3 @@
-using Balance.data;
-using Balance.domain;
-using Balance.domain.repositories;
 using Levels.adapters;
 using Levels.data;
 using Levels.data.dao;

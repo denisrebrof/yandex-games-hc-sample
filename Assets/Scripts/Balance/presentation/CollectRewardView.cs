@@ -15,6 +15,7 @@ namespace Balance.presentation
         [Inject] private CollectRewardUseCase collectReward;
         [Header("Views")] [SerializeField] private Text rewardText;
         [SerializeField] private Text multiplierText;
+        [SerializeField] private GameObject multiplierRoot;
         [Header("Events")] [SerializeField] private string collectedUiEvent = "RewardCollected";
         [Header("Counter")] [SerializeField] private int maxMultiplier = 2;
         [SerializeField] private int minMultiplier = 2;
@@ -27,6 +28,7 @@ namespace Balance.presentation
         public void Collect(bool withMultiplier)
         {
             StopAllCoroutines();
+            multiplierRoot.SetActive(false);
             if (!withMultiplier)
             {
                 collectReward.Collect();
@@ -39,6 +41,7 @@ namespace Balance.presentation
 
         private void OnEnable()
         {
+            multiplierRoot.SetActive(true);
             rewardText.text = rewardRepository.Get().ToString();
             StartCoroutine(MultiplierCoroutine());
         }

@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Purchases.adapters
 {
-    public class BalanceAccessProviderAdapter : ExecutePurchaseUseCase.IBalanceAccessProvider
+    public class BalanceAccessProviderAdapter : IBalanceAccessProvider
     {
         [Inject] private DecreaseBalanceUseCase decreaseBalanceUseCase;
 
