@@ -19,12 +19,7 @@ namespace Purchases.presentation.ui
 
         [Inject] private IPurchaseRepository purchaseRepository;
 
-        private BehaviorSubject<bool> purchasedStateFlow;
-
-        public DefaultPurchaseItemController()
-        {
-            purchasedStateFlow = new BehaviorSubject<bool>()
-        }
+        private ReactiveProperty<bool> purchasedStateFlow = new ReactiveProperty<bool>();
 
         public void OnItemClick(long purchaseId)
         {
@@ -50,6 +45,8 @@ namespace Purchases.presentation.ui
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            coinsPurchaseUseCase.ExecutePurchase(purchaseId);
         }
 
         private void TryRewardedVideoPurchase(long purchaseId)
