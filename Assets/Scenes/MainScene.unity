@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189a271f2ed94a21bb7b088e49e2cbbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placement: 
 --- !u!4 &636641146
 Transform:
   m_ObjectHideFlags: 0
@@ -641,6 +642,7 @@ GameObject:
   - component: {fileID: 1464044947}
   - component: {fileID: 1464044950}
   - component: {fileID: 1464044951}
+  - component: {fileID: 1464044952}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -681,10 +683,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c7776e42c825b7e4e834e110f701baa5, type: 2}
   - {fileID: 11400000, guid: 1f01f1904e935b34a9a36d0ada2ad0ea, type: 2}
   - {fileID: 11400000, guid: 0aebd35f9c414a44686b087a59178435, type: 2}
+  - {fileID: 11400000, guid: 73f8ca9ef6315ec4c9ffcde295fd7933, type: 2}
   _monoInstallers:
   - {fileID: 1464044947}
   - {fileID: 1464044950}
   - {fileID: 1464044951}
+  - {fileID: 1464044952}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -744,6 +748,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presenter: {fileID: 636641145}
+--- !u!114 &1464044952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464044946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 964bde778b474dc09da0ab33e6117755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animatorDailyRewardCollectingView: {fileID: 0}
 --- !u!1 &1493460085
 GameObject:
   m_ObjectHideFlags: 0
