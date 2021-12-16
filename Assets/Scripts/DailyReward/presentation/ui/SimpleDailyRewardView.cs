@@ -1,18 +1,18 @@
-﻿using System;
-using Balance.domain;
-using Balance.domain.model;
+﻿using Balance.domain;
+using DailyReward.domain;
+using DailyReward.domain.model;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Balance.presentation.ui
+namespace DailyReward.presentation.ui
 {
-    public class SimpleDailyRewardView: MonoBehaviour
+    public class SimpleDailyRewardView : MonoBehaviour
     {
         [Inject] private DailyRewardStateUseCase stateUseCase;
-        [Inject] private CollectDailyRewardUseCase collectRewardUse;
-        [Inject] private ICollectDailyRewardPresenter collectPresenter;
+        [Inject] private DailyRewardCollectUseCase dailyRewardCollectRewardUse;
+        [Inject] private IDailyRewardViewCollectListener collectListener;
         [SerializeField] private GameObject root;
         [SerializeField] private Text label;
         [SerializeField] private string readyText = "Ready";
@@ -26,7 +26,7 @@ namespace Balance.presentation.ui
         {
             var rewardDisabled = state.CooldownState == DailyRewardCooldownState.Disabled;
             root.SetActive(!rewardDisabled);
-            if(rewardDisabled)
+            if (rewardDisabled)
                 return;
 
             var rewardPrepared = state.CooldownState == DailyRewardCooldownState.Prepared;
@@ -37,13 +37,16 @@ namespace Balance.presentation.ui
 
         public void OnClick()
         {
-            
-            collectPresenter.ShowDailyRewardCollection();
+            var state = stateUseCase.GetCurrentRewardState();
+            if (state.CooldownState == DailyRewardCooldownState.Disabled)
+                return;
+
+            collectListener.ShowCollecting();
         }
 
-        private void OnCollected()
+        public interface IDailyRewardViewCollectListener
         {
-            
+            void ShowCollecting();
         }
     }
 }

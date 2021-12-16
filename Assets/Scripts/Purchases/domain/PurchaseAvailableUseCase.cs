@@ -1,4 +1,5 @@
-﻿using Purchases.domain.model;
+﻿using Purchases.domain.adapters;
+using Purchases.domain.model;
 using Purchases.domain.repositories;
 using Zenject;
 
@@ -8,7 +9,7 @@ namespace Purchases.domain
     {
         [Inject] private PurchasedStateUseCase purchasedStateUseCase;
         [Inject] private IPurchaseRepository repository;
-        [Inject] private IBalanceAccessProvider balance;
+        [Inject] private IPurchaseAvailabilityProvider purchaseAvailabilityProvider;
         [Inject] private ICoinsPurchaseRepository coinsPurchaseRepository;
         [Inject] private IRewardedVideoPurchaseRepository videoPurchaseRepository;
         
@@ -22,7 +23,7 @@ namespace Purchases.domain
             {
                 case PurchaseType.Coins:
                     var cost = coinsPurchaseRepository.GetCost(purchaseId);
-                    return balance.CanRemove(cost);
+                    return purchaseAvailabilityProvider.GetPurchaseAvailable(cost);
                 case PurchaseType.RewardedVideo:
                     var currentWatches = videoPurchaseRepository.GetRewardedVideoCurrentWatchesCount(purchaseId);
                     var requiredWatches = videoPurchaseRepository.GetRewardedVideoWatchesCount(purchaseId);

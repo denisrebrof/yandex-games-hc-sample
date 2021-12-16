@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Balance.domain.model
+namespace DailyReward.domain.model
 {
     public class DailyRewardState
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Balance.domain.repositories
+namespace DailyReward.domain.repositories
 {
     public interface IDailyRewardRepository
     {

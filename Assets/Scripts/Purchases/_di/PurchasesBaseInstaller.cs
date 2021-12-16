@@ -2,6 +2,7 @@ using Purchases.adapters;
 using Purchases.data;
 using Purchases.data.dao;
 using Purchases.domain;
+using Purchases.domain.adapters;
 using Purchases.domain.repositories;
 using Purchases.presentation.ui;
 using UnityEngine;
@@ -34,8 +35,12 @@ namespace Purchases._di
             Container.Bind<RewardedVideoPurchaseUseCase>().ToSelf().AsSingle();
             //Adapters
             Container
-                .Bind<IBalanceAccessProvider>()
-                .To<BalanceAccessProviderAdapter>()
+                .Bind<IPurchaseAvailabilityProvider>()
+                .To<PurchaseAvailabilityProviderAdapter>()
+                .AsSingle();
+            Container
+                .Bind<IPurchasePaymentHandler>()
+                .To<PurchasePaymentHandlerAdapter>()
                 .AsSingle();
             Container
                 .Bind<PurchasedStateUseCase.ILevelPassedStateProvider>()

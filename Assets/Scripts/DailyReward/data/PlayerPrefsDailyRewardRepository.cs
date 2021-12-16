@@ -1,10 +1,10 @@
 ﻿using System;
-using Balance.domain.repositories;
+using DailyReward.domain.repositories;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace Balance.data
+namespace DailyReward.data
 {
     public class PlayerPrefsDailyRewardRepository : IDailyRewardRepository
     {

@@ -1,15 +1,17 @@
 ﻿using System;
-using Balance.domain.model;
+using Balance.domain;
 using Balance.domain.repositories;
+using DailyReward.domain.model;
+using DailyReward.domain.repositories;
 using Zenject;
 
-namespace Balance.domain
+namespace DailyReward.domain
 {
-    public class CollectDailyRewardUseCase
+    public class DailyRewardCollectUseCase
     {
         [Inject] private DailyRewardCooldownStateUseCase dailyRewardCooldownState;
         [Inject] private IDailyRewardRepository dailyRewardRepository;
-        [Inject] private IBalanceRepository balanceRepository;
+        [Inject] private IDailyRewardCollectHandler rewardCollectHandler;
 
         public CollectRewardResult Collect()
         {
@@ -17,7 +19,7 @@ namespace Balance.domain
             {
                 case DailyRewardCooldownState.Prepared:
                     var amount = dailyRewardRepository.GetRewardAmount();
-                    balanceRepository.Add(amount);
+                    rewardCollectHandler.Handle(amount);
                     dailyRewardRepository.SetLastCollectTime(DateTime.Now);
                     return CollectRewardResult.Success;
                 case DailyRewardCooldownState.OnCooldown:
@@ -27,6 +29,11 @@ namespace Balance.domain
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+        
+        public interface IDailyRewardCollectHandler
+        {
+            public void Handle(int amount);
         }
 
         public enum CollectRewardResult

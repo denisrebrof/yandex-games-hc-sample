@@ -23,7 +23,7 @@ namespace Balance.domain
         {
             Success,
             LowBalance,
-            UnexpectedFailure
+            Failure
         }
     }
 }

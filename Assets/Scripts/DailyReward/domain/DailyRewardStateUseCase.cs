@@ -1,11 +1,12 @@
 ﻿using System;
-using Balance.domain.model;
 using Balance.domain.repositories;
+using DailyReward.domain.model;
+using DailyReward.domain.repositories;
 using UniRx;
 using Zenject;
-using static Balance.domain.model.DailyRewardCooldownState;
+using static DailyReward.domain.model.DailyRewardCooldownState;
 
-namespace Balance.domain
+namespace DailyReward.domain
 {
     public class DailyRewardStateUseCase
     {

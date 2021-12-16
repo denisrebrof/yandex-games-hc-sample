@@ -1,14 +1,14 @@
-﻿using Purchases.domain.repositories;
+﻿using Purchases.domain.adapters;
+using Purchases.domain.repositories;
 using Zenject;
 
 namespace Purchases.domain
 {
     public class CoinsPurchaseUseCase
     {
-
         [Inject] private ICoinsPurchaseRepository coinsPurchaseRepository;
-        [Inject] private IBalanceAccessProvider balanceAccessProvider;
-        
+        [Inject] private IPurchasePaymentHandler purchasePaymentHandler;
+
         public CoinsPurchaseResult ExecutePurchase(long purchaseId)
         {
             var purchasedState = coinsPurchaseRepository.GetPurchasedState(purchaseId);
@@ -16,14 +16,14 @@ namespace Purchases.domain
                 return CoinsPurchaseResult.AlreadyPurchased;
 
             var cost = coinsPurchaseRepository.GetCost(purchaseId);
-            if (!balanceAccessProvider.CanRemove(cost))
+            var paymentResult = purchasePaymentHandler.ExecutePayment(cost);
+            if (paymentResult != IPurchasePaymentHandler.PurchasePaymentResult.Success)
                 return CoinsPurchaseResult.Failure;
-            
-            balanceAccessProvider.Remove(cost);
+
             coinsPurchaseRepository.SetPurchased(purchaseId);
             return CoinsPurchaseResult.Success;
         }
-        
+
         public enum CoinsPurchaseResult
         {
             Success,

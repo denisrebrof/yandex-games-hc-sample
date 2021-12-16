@@ -1,4 +1,4 @@
-﻿namespace Balance.domain.model
+﻿namespace DailyReward.domain.model
 {
     public enum DailyRewardCooldownState
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Balance.data.dao
+namespace DailyReward.data.dao
 {
     [CreateAssetMenu(fileName = "Daily Reward Default Dao", menuName = "Daily Reward", order = 0)]
     public class DailyRewardDefaultDao : ScriptableObject, PlayerPrefsDailyRewardRepository.IDailyRewardDao
