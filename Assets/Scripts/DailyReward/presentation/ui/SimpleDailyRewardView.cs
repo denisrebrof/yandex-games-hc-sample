@@ -11,8 +11,8 @@ namespace DailyReward.presentation.ui
     public class SimpleDailyRewardView : MonoBehaviour
     {
         [Inject] private DailyRewardStateUseCase stateUseCase;
-        [Inject] private DailyRewardCollectUseCase dailyRewardCollectRewardUse;
         [Inject] private IDailyRewardViewCollectListener collectListener;
+        
         [SerializeField] private GameObject root;
         [SerializeField] private Text label;
         [SerializeField] private string readyText = "Ready";
