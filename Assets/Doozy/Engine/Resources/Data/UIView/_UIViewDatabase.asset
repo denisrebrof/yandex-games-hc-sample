@@ -16,5 +16,9 @@ MonoBehaviour:
   CategoryNames:
   - Custom
   - General
+  - Settings
+  - LevelGameplay
   Categories:
   - {fileID: 11400000, guid: 3b7d02bee2e0550479a0984d159e500b, type: 2}
+  - {fileID: 11400000, guid: c723b74e557887148a1ece580887c291, type: 2}
+  - {fileID: 11400000, guid: 966a602e5eee62f4b91a2b4467353c3d, type: 2}
