@@ -1,6 +1,6 @@
 ﻿namespace Levels.presentation
 {
-    public interface ILevelCompletedListener
+    public interface ILevelCompletionHandler
     {
         void CompleteCurrentLevel();
     }

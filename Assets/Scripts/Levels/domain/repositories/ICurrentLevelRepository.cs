@@ -1,4 +1,5 @@
-﻿using Levels.domain.model;
+﻿using System;
+using Levels.domain.model;
 
 namespace Levels.domain.repositories
 {
@@ -6,5 +7,6 @@ namespace Levels.domain.repositories
     {
         void SetCurrentLevel(long levelId);
         Level GetCurrentLevel();
+        IObservable<Level> GetCurrentLevelFlow();
     }
 }

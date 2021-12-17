@@ -5,7 +5,8 @@ using Zenject;
 
 namespace Levels.presentation
 {
-    public class CompleteLevelController : MonoBehaviour, ILevelCompletedListener
+    [CreateAssetMenu(fileName = "CompleteLevelController", menuName = "Levels/CompleteLevelController")]
+    public class CompleteLevelController : ScriptableObject, ILevelCompletionHandler
     {
         [SerializeField] private string uiEventName = "LevelCompleted";
         [Inject] private CompleteCurrentLevelUseCase completeCurrentLevelUseCase;
