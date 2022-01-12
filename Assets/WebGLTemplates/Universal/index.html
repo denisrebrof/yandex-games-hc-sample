@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>GameName %UNITY_CUSTOM_MYTAG%</title>
+    <link rel="shortcut icon" href="TemplateData/img/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/css/style.css">
+    <script src="Build/UnityLoader.js"></script>
+	<script>
+		function ToggleFullScreen() {
+			var isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
+			(document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
+			(document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
+			(document.msFullscreenElement && document.msFullscreenElement !== null);
+			
+			var element = document.body.getElementsByClassName("webgl-content")[0];
+			
+			if (!isInFullScreen) {
+				document.getElementById("fullScreenButton").style.backgroundImage="url('TemplateData/img/fullScreen_off.png')";
+				return (element.requestFullscreen ||
+				element.webkitRequestFullscreen ||
+				element.mozRequestFullScreen ||
+				element.msRequestFullscreen).call(element);
+			}
+			else {
+				document.getElementById("fullScreenButton").style.backgroundImage="url('TemplateData/img/fullScreen_on.png')";
+				if (document.exitFullscreen) {
+					document.exitFullscreen();
+				} else if (document.webkitExitFullscreen) {
+					document.webkitExitFullscreen();
+				} else if (document.mozCancelFullScreen) {
+					document.mozCancelFullScreen();
+				} else if (document.msExitFullscreen) {
+					document.msExitFullscreen();
+				}
+			}
+		}
+		
+		function CheckCompatibility(gameInstance, onsuccess, onerror)
+		{
+			if (!UnityLoader.SystemInfo.hasWebGL) {
+				document.getElementById("errorBrowserBlock").style.display = "inherit";
+				onerror();
+			} else if (UnityLoader.SystemInfo.mobile) {
+				document.getElementById("warningMobileBlock").style.display = "inherit";
+				onsuccess();
+			} else if (["Firefox", "Chrome", "Safari"].indexOf(UnityLoader.SystemInfo.browser) == -1) {
+				document.getElementById("warningBrowserBlock").style.display = "inherit";
+				onsuccess();
+			} else {
+				onsuccess();
+			}
+		}
+		
+		function RuntimeInitialized(){
+		}
+		
+		function UnityProgress(gameInstance, progress) {
+			if (!gameInstance.Module)
+			return;
+			document.getElementById("loadingBlock").style.display = "inherit";	 	
+			document.getElementById("fullBar").style.width = (100 * progress) + "%";
+			document.getElementById("emptyBar").style.width = (100 * (1 - progress)) + "%";
+			if (progress == 1)
+			{
+				setTimeout(function(){ document.getElementById("loadingBlock").style.display = "none"; }, 3000);
+			}	
+		}
+		
+		var gameInstance = UnityLoader.instantiate("gameContainer", "%UNITY_WEBGL_BUILD_URL%", {
+			onProgress: UnityProgress,
+			compatibilityCheck:CheckCompatibility,
+			Module: {
+				//TOTAL_MEMORY: 268435456,
+				onRuntimeInitialized:RuntimeInitialized,
+			},		
+		});
+    </script>
+  </head>
+  <body>
+  
+    <div class="keepRatio">
+  
+		<div class="webgl-content">
+			<button id="fullScreenButton" onclick="ToggleFullScreen()"></button>
+			<div id="gameContainer"></div>
+		</div>
+		
+		
+		<div id="loadingBlock">
+			<img class="logo" src="TemplateData/img/Logo.png"></img>
+			<span class="subtitle"> CATCHPHRASE <br>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			</span>
+			
+			<div id="progressBar">
+				<div>LOADING ...</div>
+				<div class="centered">
+					<div id="emptyBar"></div>
+					<div id="fullBar"></div>
+				</div>
+			</div>
+			
+			<div id="warningBrowserBlock" style="display:none;">
+				<div class="warningBrowserText">
+					Your browser may not be compatible with this website. For an optimal experience, we suggest you to download one of this popular web browsers.
+				</div>
+				<div class="browserIcons">
+					<a href="https://www.mozilla.org/firefox" target="_blank"><img src="TemplateData/img/browser-firefox.png" alt="Firefox browser"></a>
+					<a href="https://www.google.com/chrome" target="_blank"><img src="TemplateData/img/browser-chrome.png" alt="Chrome browser"></a>
+					<a href="https://www.apple.com/safari/" target="_blank"><img src="TemplateData/img/browser-safari.png" alt="Safari browser"></a>
+				</div>
+			</div>
+			<div id="warningMobileBlock" style="display:none;">
+				<div class="warningBrowserText">
+					Please note that Unity WebGL is not currently supported on mobiles.
+				</div>
+			</div>
+			
+		</div>
+		
+		<div id="errorBrowserBlock" style="display:none;">
+			<img class="logo" src="TemplateData/img/Logo.png"></img>
+			<span class="subtitle"> CATCHPHRASE <br>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			</span>
+			
+			<div id="errorContent">
+				<div id="errorBrowserText">
+					Your browser does not support WebGL. <br> You can download one of this popular web browsers.
+				</div>
+				<div class="browserIcons">
+					<a href="https://www.mozilla.org/firefox" target="_blank"><img src="TemplateData/img/browser-firefox.png" alt="Firefox browser"></a>
+					<a href="https://www.google.com/chrome" target="_blank"><img src="TemplateData/img/browser-chrome.png" alt="Chrome browser"></a>
+					<a href="https://www.apple.com/safari/" target="_blank"><img src="TemplateData/img/browser-safari.png" alt="Safari browser"></a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+  </body>
+</html>

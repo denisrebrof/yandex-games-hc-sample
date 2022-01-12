@@ -1,0 +1,35 @@
+{
+	"poki_template_version": 1,
+	"extra_html": {
+	  "head": [
+		"<!-- will be copied to the resulting head //-->"
+	  ],
+	  "body": [
+		"<!-- will be copied to the resulting body //-->",
+		"<!-- will also be copied to the resulting body //-->"
+	  ]
+	},
+	"background_color": "{{{ BACKGROUND_COLOR }}}",
+	"background_filename": "{{{ BACKGROUND_FILENAME }}}",
+	"code_filename": "{{{ CODE_FILENAME }}}",
+	"company_name": "{{{ COMPANY_NAME }}}",
+	"data_filename": "{{{ DATA_FILENAME }}}",
+	"decompression_fallback": "{{{ DECOMPRESSION_FALLBACK }}}",
+	"development_player": "{{{ DEVELOPMENT_PLAYER }}}",
+	"framework_filename": "{{{ FRAMEWORK_FILENAME }}}",
+	"height": "{{{ HEIGHT }}}",
+	"loader_filename": "{{{ LOADER_FILENAME }}}",
+	"memory_filename": "{{{ MEMORY_FILENAME }}}",
+	"product_name": "{{{ PRODUCT_NAME }}}",
+	"product_version": "{{{ PRODUCT_VERSION }}}",
+	"splash_screen_style": "{{{ SPLASH_SCREEN_STYLE }}}",
+	"symbols_filename": "{{{ SYMBOLS_FILENAME }}}",
+	"total_memory": "{{{ TOTAL_MEMORY }}}",
+	"unity_version": "{{{ UNITY_VERSION }}}",
+	"use_data_caching": "{{{ USE_DATA_CACHING }}}",
+	"use_threads": "{{{ USE_THREADS }}}",
+	"use_wasm": "{{{ USE_WASM }}}",
+	"use_webgl_1_0": "{{{ USE_WEBGL_1_0 }}}",
+	"use_webgl_2_0": "{{{ USE_WEBGL_2_0 }}}",
+	"width": "{{{ WIDTH }}}"
+  }
