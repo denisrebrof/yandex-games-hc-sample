@@ -49,7 +49,9 @@ namespace SDK.Editor
 #else
                 return Array.Empty<string>();
 #endif
+#pragma warning disable 162
                 return ReadLinesFromFile(headFilePath);
+#pragma warning restore 162
             }
         }
 
@@ -65,7 +67,9 @@ namespace SDK.Editor
 #else
                 return Array.Empty<string>();
 #endif
+#pragma warning disable 162
                 return ReadLinesFromFile(bodyFilePath);
+#pragma warning restore 162
             }
         }
 

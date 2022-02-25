@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
+using UnityEngine;
 
 namespace Utils.Editor
 {
@@ -13,8 +14,10 @@ namespace Utils.Editor
 
         protected void SetVariant(T fieldValueVariant)
         {
+            Debug.Log("Set Var");
             CleanDefineSymbols();
             var symbolValue = Symbols[fieldValueVariant];
+            Debug.Log("symbolValue " + symbolValue);
             if (!string.IsNullOrWhiteSpace(symbolValue))
             {
                 SetPlatformDefineSymbol(symbolValue);
@@ -38,6 +41,7 @@ namespace Utils.Editor
             //Add closure ';' if not exists
             if (currData.Length > 0 && !currData[currData.Length - 1].Equals(';')) currData += ';';
             currData += symbol;
+            Debug.Log("currData " + currData);
             PlayerSettings.SetScriptingDefineSymbolsForGroup(TargetGroup, currData);
         }
     }

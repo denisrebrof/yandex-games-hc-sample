@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb74a60c88d47c59f00e35977b6d7b7, type: 3}
   m_Name: ProcessorsSettings
   m_EditorClassIdentifier: 
-  RunFoldersProcessor: 1
+  RunFoldersProcessor: 0
   RunDoozyAssetsProcessor: 0

@@ -1,6 +1,6 @@
 ﻿#if GAME_ANALYTICS
 using GameAnalyticsSDK.Setup;
-using SDK;
+using SDK.Editor;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
@@ -14,9 +14,9 @@ namespace Analytics.Editor
 
         public void OnPreprocessBuild(BuildReport report)
         {
-            var result = AssetDatabase.FindAssets("Settings", new[] { "Assets/Resources/GameAnalytics" });
+            var result = AssetDatabase.FindAssets("Settings", new[] {"Assets/Resources/GameAnalytics"});
             var path = AssetDatabase.GUIDToAssetPath(result[0]);
-            var settingsObject = (Settings)AssetDatabase.LoadAssetAtPath(path, typeof(Settings));
+            var settingsObject = (Settings) AssetDatabase.LoadAssetAtPath(path, typeof(Settings));
             var version = BuildPlatformVersionProvider.GetBuildVersion();
             Debug.Log("Analytics Version: " + version);
             for (var i = 0; i < settingsObject.Build.Count; i++)

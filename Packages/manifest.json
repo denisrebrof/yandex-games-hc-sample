@@ -1,5 +1,7 @@
 {
   "dependencies": {
+	  "com.gameanalytics.sdk": "7.3.21",
+	"com.google.external-dependency-manager": "file:../GooglePackages/com.google.external-dependency-manager-1.2.169.tgz",
     "com.neuecc.unirx": "https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts",
     "com.svermeulen.extenject": "https://github.com/Mathijs-Bakker/Extenject.git?path=UnityProject/Assets/Plugins/Zenject/Source#",
     "com.unity.2d.animation": "7.0.2",
@@ -45,5 +47,21 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "Game Package Registry by Google", 
+      "url": "https://unityregistry-pa.googleapis.com/", 
+      "scopes": [ 
+        "com.google" 
+      ]
+    },
+    {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.gameanalytics"
+      ]
+    }
+  ]
 }
