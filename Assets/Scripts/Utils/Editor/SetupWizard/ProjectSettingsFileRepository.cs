@@ -14,10 +14,13 @@ namespace Utils.Editor.SetupWizard
 
         public T Get()
         {
+            Debug.Log("Get");
+            Debug.Log("Exists: " + File.Exists(SettingsFilePath));
             if (!File.Exists(SettingsFilePath))
                 return DefaultSettingsInstance;
 
             var content = File.ReadAllText(SettingsFilePath);
+            Debug.Log("content: " + content);
             return JsonUtility.FromJson<T>(content);
         }
 

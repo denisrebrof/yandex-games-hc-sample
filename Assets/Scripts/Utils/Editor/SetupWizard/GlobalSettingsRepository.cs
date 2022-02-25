@@ -3,6 +3,8 @@
     public class GlobalSettingsRepository: ProjectSettingsFileRepository<ProjectGlobalSettingsData>
     {
         protected override string SettingsFileName => "global_settings.json";
-        protected override ProjectGlobalSettingsData DefaultSettingsInstance => new ProjectGlobalSettingsData();
+        protected override ProjectGlobalSettingsData DefaultSettingsInstance => new ProjectGlobalSettingsData(
+            true, ""
+        );
     }
 }
