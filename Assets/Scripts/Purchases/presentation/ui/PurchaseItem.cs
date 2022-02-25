@@ -15,7 +15,7 @@ namespace Purchases.presentation.ui
         
         [SerializeField] private GameObject unavaliableStub;
         [SerializeField] private GameObject avaliableStub;
-        [SerializeField] private Text name;
+        [SerializeField] private Text itemName;
         [SerializeField] private Text description;
 
         private long? purchaseID;
@@ -25,8 +25,8 @@ namespace Purchases.presentation.ui
             purchaseID = purchase.Id;
             setupEvent.Invoke(purchase.Id);
 
-            if (name != null)
-                name.text = purchase.Name;
+            if (itemName != null)
+                itemName.text = purchase.Name;
             
             if (description != null)
                 description.text = purchase.Description;

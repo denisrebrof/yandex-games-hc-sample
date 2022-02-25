@@ -678,7 +678,7 @@ PlayerSettings:
     PS5: dUI_MANAGER
     Stadia: dUI_MANAGER
     Standalone: dUI_MANAGER;GAME_ANALYTICS
-    WebGL: dUI_MANAGER;CRAZY_SDK;GAME_ANALYTICS
+    WebGL: dUI_MANAGER;YANDEX_SDK;DEBUG_ANALYTICS
     Windows Store Apps: dUI_MANAGER
     XboxOne: dUI_MANAGER
     iPhone: dUI_MANAGER
