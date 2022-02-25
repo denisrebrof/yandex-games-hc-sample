@@ -9,9 +9,6 @@ namespace Ads._di
 {
     public class AdsInstaller : MonoInstaller
     {
-        [SerializeField] private InterstitialAdNavigatorCounterDecorator dieCounterNavigator;
-        [SerializeField] private InterstitialAdNavigatorCounterDecorator levelLoadedCounterNavigator;
-
         [SerializeField] private InterstitialAdNavigatorMuteAudioDecorator muteAudioInterstitialAdNavigatorDecorator;
 
         public override void InstallBindings()

@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0c534a4c6053684f85dcaeaa8a39c75, type: 3}
-  m_Name: PurchasesBaseInstaller
+  m_Script: {fileID: 11500000, guid: be5ca090c3ec4482a1f4249d188742b1, type: 3}
+  m_Name: Sound Installer
   m_EditorClassIdentifier: 
-  purchaseEntitiesDao: {fileID: 11400000, guid: e6dbedd358647194cac02ab6e92fc8cc, type: 2}
