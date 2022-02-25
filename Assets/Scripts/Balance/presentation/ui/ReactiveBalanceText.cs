@@ -1,4 +1,5 @@
-﻿using Balance.domain.repositories;
+﻿using System;
+using Balance.domain.repositories;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,23 +8,24 @@ using Zenject;
 
 namespace Balance.presentation.ui
 {
-    [RequireComponent(typeof(Text))]
-    public class ReactiveBalanceText : MonoBehaviour
+    public class ReactiveBalanceText: MonoBehaviour
     {
+        [SerializeField] private Text text;
         [Inject] private IBalanceRepository balanceRepository;
-        [SerializeField] private UnityEvent onUpdate = new UnityEvent();
-        private Text target;
+        [SerializeField] private UnityEvent onUpdateText;
 
         private void Awake()
         {
-            target = GetComponent<Text>();
-            balanceRepository.ObserveBalance().Subscribe(UpdateBalanceText).AddTo(this);
+            if (text == null)
+                text = GetComponent<Text>();
         }
 
-        private void UpdateBalanceText(int balance)
+        private void Start() => balanceRepository.GetBalance().Subscribe(UpdateBalance).AddTo(this);
+
+        private void UpdateBalance(int balance)
         {
-            target.text = balance.ToString();
-            onUpdate.Invoke();
+            text.text = balance.ToString();
+            onUpdateText.Invoke();
         }
     }
 }

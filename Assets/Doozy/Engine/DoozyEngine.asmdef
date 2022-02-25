@@ -1,0 +1,16 @@
+{
+    "name": "DoozyEngine",
+    "rootNamespace": "",
+    "references": [
+        "DOTweenAssembly"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

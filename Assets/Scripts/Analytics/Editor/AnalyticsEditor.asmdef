@@ -1,0 +1,20 @@
+{
+    "name": "AnalyticsEditor",
+    "rootNamespace": "",
+    "references": [
+        "EditorUtils",
+        "SDKEditor",
+        "GAnalytics"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

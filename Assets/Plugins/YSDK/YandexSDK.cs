@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-public class YandexSDK : MonoBehaviour {
-    public static YandexSDK instance;
-    
-    #if YANDEX_SDK
-    
+namespace Plugins.YSDK
+{
+    public class YandexSDK : MonoBehaviour
+    {
+        public static YandexSDK instance;
+
+#if YANDEX_SDK
     [DllImport("__Internal")]
     private static extern void GetUserData();
-    
+    [DllImport("__Internal")]
+    private static extern void RequestPlayerId();
     [DllImport("__Internal")]
     private static extern string GetLang();
     [DllImport("__Internal")]
@@ -32,6 +35,8 @@ public class YandexSDK : MonoBehaviour {
     private static extern void InitPurchases();
     [DllImport("__Internal")]
     private static extern void Purchase(string id);
+    [DllImport("__Internal")]
+    private static extern void Hit(string id);
     
 	[DllImport("__Internal")]
     private static extern string GetDeviceType();
@@ -39,6 +44,7 @@ public class YandexSDK : MonoBehaviour {
     public UserData user;
     public event Action onUserDataReceived;
 
+    public event Action<string> onPlayerIdReceived;
     public event Action onInterstitialShown;
     public event Action<string> onInterstitialFailed;
     /// <summary>
@@ -83,14 +89,13 @@ public class YandexSDK : MonoBehaviour {
     {
         return GetLang();
     }
-	
-	public bool GetIsOnDesktop()
+    
+    public void RequestPlayerIndentifier()
     {
-        var val = !GetDeviceType().ToLower().Contains("mobile");
-        Debug.Log("GetIsDesktop");
-        Debug.Log(GetDeviceType());
-        return val;
+        RequestPlayerId();
     }
+	
+	public bool GetIsOnDesktop() => !GetDeviceType().ToLower().Contains("mobile");
 
     /// <summary>
     /// Call this to show rewarded ad
@@ -101,6 +106,10 @@ public class YandexSDK : MonoBehaviour {
         rewardedAdsPlacements.Enqueue(placement);
     }
     
+    public void AddHit(string eventName) {
+        Hit(eventName);
+    }
+    
     /// <summary>
     /// Call this to receive user data
     /// </summary>
@@ -109,16 +118,18 @@ public class YandexSDK : MonoBehaviour {
     /// <summary>
     /// Callback from index.html
     /// </summary>
-    public void OnInterstitialShown() {
-        onInterstitialShown();
+    public void OnInterstitialShown()
+    {
+        if (onInterstitialShown != null) onInterstitialShown.Invoke();
     }
 
     /// <summary>
     /// Callback from index.html
     /// </summary>
     /// <param name="error"></param>
-    public void OnInterstitialError(string error) {
-        onInterstitialFailed(error);
+    public void OnInterstitialFailed(string error)
+    {
+        if (onInterstitialFailed != null) onInterstitialFailed(error);
     }
 
     /// <summary>
@@ -157,14 +168,24 @@ public class YandexSDK : MonoBehaviour {
         rewardedAdPlacementsAsInt.Clear();
     }
     
-    #endif
+    /// <summary>
+    /// Callback from index.html
+    /// </summary>
+    /// /// <param name="playerId"></param>
+    public void OnHandlePlayerId(string playerId) {
+        Debug.Log("Handle PId in YandexSDK");
+        if(onPlayerIdReceived!=null) onPlayerIdReceived.Invoke(playerId);
+    }
 
-}
+#endif
+    }
 
-public struct UserData {
-    public string id;
-    public string name;
-    public string avatarUrlSmall;
-    public string avatarUrlMedium;
-    public string avatarUrlLarge;
+    public struct UserData
+    {
+        public string id;
+        public string name;
+        public string avatarUrlSmall;
+        public string avatarUrlMedium;
+        public string avatarUrlLarge;
+    }
 }

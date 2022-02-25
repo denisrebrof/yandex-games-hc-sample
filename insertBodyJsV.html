@@ -2,68 +2,63 @@
 
 <script type="text/javascript">
 
-    vkBridge.send('VKWebAppInit');
+      vkBridge.send('VKWebAppInit');
 
-    function auth() {
-        vkBridge.send('VKWebAppGetUserInfo').then(_info => {
-            console.log(_info);
-            unityI.SendMessage('VKSDK', 'AuthenticateSuccess', JSON.stringify(_info));
+      function auth(){
+        vkBridge.send('VKWebAppGetUserInfo').then(_info =>{
+          console.log(_info);
+          unityI.SendMessage('VKSDK', 'AuthenticateSuccess', JSON.stringify(_info));
         });
-    }
+      }
 
-    function getUserData() {
-        vkBridge.send("VKWebAppStorageGet", {"keys": ["_save"]}).then(data => {
-            console.log(data);
-            unityI.SendMessage('VKSDK', 'DataGetting', JSON.stringify(data));
-        });
-    }
-
-    function setUserData(data) {
+      function getUserData(){
+        vkBridge.send("VKWebAppStorageGet",{"keys":["_save"]}).then(data =>{
         console.log(data);
-        vkBridge.send('VKWebAppStorageSet', {"key": "_save", "value": data}).then(_info => {
-            console.log("Saved!")
-        });
-    }
+        unityI.SendMessage('VKSDK', 'DataGetting', JSON.stringify(data));
+      });}
 
-    function showFullscreenAd() {
+      function setUserData(data){
+        console.log(data);
+        vkBridge.send('VKWebAppStorageSet',{"key": "_save" , "value": data}).then(_info =>{
+          console.log("Saved!")});
+      }
+
+      function showFullscreenAd(){
         vkBridge
-            .send('VKWebAppShowNativeAds', {ad_format: "interstitial"})
-            .then(data => {
-                    if (data.result) {
-                        window.unityInstance.SendMessage('VKSDK', 'OnInterstitialShown');
-                    } else {
-                        window.unityInstance.SendMessage('VKSDK', 'OnInterstitialError', JSON.stringify(data.result));
-                    }
-                    console.log(data);
-                }
-            ).catch(e => {
-            window.unityInstance.SendMessage('VKSDK', 'OnInterstitialError', JSON.stringify(e));
-        });
-    }
+        .send('VKWebAppShowNativeAds',{ad_format:"interstitial"})
+        .then(data => {
+          if(data.result){
+            window.unityInstance.SendMessage('VKSDK', 'OnInterstitialShown');
+          }else{
+            window.unityInstance.SendMessage('VKSDK', 'OnInterstitialError', JSON.stringify(data.result));
+          }
+          console.log(data);
+          }
+        ).catch(e => {
+			window.unityInstance.SendMessage('VKSDK', 'OnInterstitialError', JSON.stringify(e));
+		});
+      }
 
-    function showRewardedAd() {
-        vkBridge
-            .send('VKWebAppShowNativeAds', {ad_format: "reward"})
-            .then(data => {
-                    console.log(data);
-                    <!--          window.unityInstance.SendMessage('VKSDK', 'RewardGetting',JSON.stringify(data.result));-->
-                }
-            )
-    }
+      function showRewardedAd(){
+        vkBridge.send('VKWebAppShowNativeAds',{ad_format:"reward"}).then(data => {
+          console.log(data);
+<!--          window.unityInstance.SendMessage('VKSDK', 'RewardGetting',JSON.stringify(data.result));-->
+          })
+      }
 
-    function showInviteBox() {
+      function showInviteBox(){
         vkBridge.send("VKWebAppShowInviteBox", {})
-            .then(data => console.log(data.success))
-            .catch(error => console.log(error));
-    }
+        .then(data => console.log(data.success))
+        .catch(error => console.log(error));
+      }
 
-    function showWallPostBox(message, attachments) {
+      function showWallPostBox(message, attachments){
         vkBridge.send("VKWebAppShowWallPostBox", {
             "message": message,
             "attachments": attachments
         })
-            .then(data => console.log(data.success))
-            .catch(error => console.log(error));
-    }
+        .then(data => console.log(data.success))
+        .catch(error => console.log(error));
+      }
 
 </script>

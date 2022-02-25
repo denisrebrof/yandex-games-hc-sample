@@ -6,7 +6,6 @@ namespace Purchases.data.dao
     {
         private const string PrefsKeyPrefix = "RewardedVideoWatches";
 
-
         public bool GetPurchasedState(long purchaseId)
         {
             var prefKey = GetPrefKey(purchaseId);

@@ -2,7 +2,6 @@ using Purchases.adapters;
 using Purchases.data;
 using Purchases.data.dao;
 using Purchases.domain;
-using Purchases.domain.adapters;
 using Purchases.domain.repositories;
 using Purchases.presentation.ui;
 using UnityEngine;
@@ -14,17 +13,17 @@ namespace Purchases._di
     public class PurchasesBaseInstaller : ScriptableObjectInstaller
     {
         [SerializeField] private SimplePurchaseEntitiesDao purchaseEntitiesDao;
+
         public override void InstallBindings()
         {
             //Daos
-            Container.Bind<ISavedPurchasedStateDao>().To<PlayerPrefsPurchasedStateDao>().AsSingle();
-            Container
-                .Bind<RewardedVideoPurchaseRepository.IRewardedVideoWatchDao>()
-                .To<PlayerPrefsRewardedVideoWatchesDao>()
-                .AsSingle();
+            BindPurchasedStateDao();
+            BindRewardedVideoWatchDao();
             Container.Bind<IPurchaseEntitiesDao>().FromInstance(purchaseEntitiesDao).AsSingle();
+            Container.Bind<PurchaseEntityConverter>().ToSelf().AsSingle();
             //Repositories
             Container.Bind<IPurchaseRepository>().To<PurchaseRepository>().AsSingle();
+            Container.Bind<IPurchaseImageRepository>().To<PurchaseImageRepository>().AsSingle();
             Container.Bind<ICoinsPurchaseRepository>().To<CoinsPurchaseRepository>().AsSingle();
             Container.Bind<IPassLevelRewardPurchasesRepository>().To<PassLevelRewardPurchasesRepository>().AsSingle();
             Container.Bind<IRewardedVideoPurchaseRepository>().To<RewardedVideoPurchaseRepository>().AsSingle();
@@ -35,15 +34,11 @@ namespace Purchases._di
             Container.Bind<RewardedVideoPurchaseUseCase>().ToSelf().AsSingle();
             //Adapters
             Container
-                .Bind<IPurchaseAvailabilityProvider>()
-                .To<PurchaseAvailabilityProviderAdapter>()
+                .Bind<IBalanceAccessProvider>()
+                .To<BalanceAccessProviderAdapter>()
                 .AsSingle();
             Container
-                .Bind<IPurchasePaymentHandler>()
-                .To<PurchasePaymentHandlerAdapter>()
-                .AsSingle();
-            Container
-                .Bind<PurchasedStateUseCase.ILevelPassedStateProvider>()
+                .Bind<ILevelPassedStateProvider>()
                 .To<LevelPassedStateProviderAdapter>()
                 .AsSingle();
             Container
@@ -51,12 +46,32 @@ namespace Purchases._di
                 .To<LevelNumberProviderAdapter>()
                 .AsSingle();
             Container
-                .Bind<RewardedVideoPurchaseUseCase.IRewardedVideoPurchasePresenterAdapter>()
-                .To<RewardedVideoPurchasePresenterAdapter>()
-                .AsSingle();
-            Container
                 .Bind<DefaultPurchaseItemController.IPurchaseItemSelectionAdapter>()
                 .To<PurchaseItemSelectionAdapter>()
+                .AsSingle();
+        }
+
+        private void BindRewardedVideoWatchDao()
+        {
+            Container
+                .Bind<RewardedVideoPurchaseRepository.IRewardedVideoWatchDao>()
+#if PLAYER_PREFS_STORAGE
+                .To<PlayerPrefsRewardedVideoWatchesDao>()
+#else
+                .To<LocalStorageRewardedVideoWatchesDao>()
+#endif
+                .AsSingle();
+        }
+
+        private void BindPurchasedStateDao()
+        {
+            Container
+                .Bind<ISavedPurchasedStateDao>()
+#if PLAYER_PREFS_STORAGE
+                .To<PlayerPrefsPurchasedStateDao>()
+#else
+                .To<LocalStoragePurchasedStateDao>()
+#endif
                 .AsSingle();
         }
     }

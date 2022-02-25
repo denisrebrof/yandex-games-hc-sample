@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Localization.LanguageProviders;
 using UnityEngine;
 using Zenject;

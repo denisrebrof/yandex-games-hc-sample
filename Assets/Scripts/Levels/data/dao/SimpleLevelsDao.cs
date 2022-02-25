@@ -10,7 +10,7 @@ namespace Levels.data.dao
     {
         [SerializeField] private int defaultReward = 100;
 
-        [SerializeField] private List<GameObject> scenePrefabs = new List<GameObject>();
+        [SerializeField] private List<GameObject> scenePrefabs = new();
 
         public List<LevelEntity> GetLevelEntities() => Enumerable
             .Range(0, scenePrefabs.Count)

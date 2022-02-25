@@ -210,6 +210,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1576,6 +1577,69 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      GUI_4: 21300008
+      GUI_26: 21300052
+      GUI_3: 21300006
+      GUI_2: 21300004
+      GUI_11: 21300022
+      GUI_56: 21300098
+      GUI_44: 21300078
+      GUI_68: 21300122
+      GUI_15: 21300030
+      GUI_54: 21300094
+      GUI_21: 21300042
+      GUI_13: 21300026
+      GUI_12: 21300024
+      GUI_47: 21300084
+      GUI_9: 21300018
+      GUI_57: 21300100
+      GUI_43: 21300076
+      GUI_22: 21300044
+      GUI_6: 21300012
+      GUI_45: 21300080
+      GUI_62: 21300110
+      GUI_16: 21300032
+      GUI_7: 21300014
+      GUI_8: 21300016
+      GUI_10: 21300020
+      GUI_31: 21300062
+      GUI_27: 21300054
+      GUI_60: 21300106
+      GUI_28: 21300056
+      GUI_5: 21300010
+      GUI_52: 21300090
+      GUI_0: 21300000
+      GUI_61: 21300108
+      GUI_42: 21300074
+      GUI_34: 21300068
+      GUI_32: 21300064
+      GUI_33: 21300066
+      GUI_19: 21300038
+      GUI_58: 21300102
+      GUI_67: 21300120
+      GUI_53: 21300092
+      GUI_29: 21300058
+      GUI_1: 21300002
+      GUI_55: 21300096
+      GUI_51: 21300088
+      GUI_24: 21300048
+      GUI_63: 21300112
+      GUI_20: 21300040
+      GUI_30: 21300060
+      GUI_14: 21300028
+      GUI_23: 21300046
+      GUI_35: 21300070
+      GUI_36: 21300072
+      GUI_59: 21300104
+      GUI_66: 21300118
+      GUI_17: 21300034
+      GUI_46: 21300082
+      GUI_48: 21300086
+      GUI_65: 21300116
+      GUI_25: 21300050
+      GUI_18: 21300036
+      GUI_64: 21300114
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

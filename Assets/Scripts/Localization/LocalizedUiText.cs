@@ -1,39 +1,41 @@
-using Localization;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-[RequireComponent(typeof(Text))]
-public class LocalizedUiText : MonoBehaviour
+namespace Localization
 {
-    [Inject] private ILanguageProvider languageProvider;
-    [SerializeField, TextArea(3, 10)] private string ru;
-    [SerializeField, TextArea(3, 10)] private string en;
-
-    private void Start()
+    [RequireComponent(typeof(Text))]
+    public class LocalizedUiText : MonoBehaviour
     {
-        var text = GetComponent<Text>();
-        string local;
-        try
+        [Inject] private ILanguageProvider languageProvider;
+        [SerializeField, TextArea(3, 10)] private string ru;
+        [SerializeField, TextArea(3, 10)] private string en;
+
+        private void Start()
         {
-            local = GetLocalizedText();
-        }
-        catch
-        {
-            local = ru;
+            var text = GetComponent<Text>();
+            string local;
+            try
+            {
+                local = GetLocalizedText();
+            }
+            catch
+            {
+                local = ru;
+            }
+
+            text.text = local;
         }
 
-        text.text = local;
-    }
-
-    private string GetLocalizedText()
-    {
-        var lang = languageProvider.GetCurrentLanguage();
-        return lang switch
+        private string GetLocalizedText()
         {
-            Language.Russian => ru,
-            Language.English => en,
-            _ => en
-        };
+            var lang = languageProvider.GetCurrentLanguage();
+            return lang switch
+            {
+                Language.Russian => ru,
+                Language.English => en,
+                _ => en
+            };
+        }
     }
 }

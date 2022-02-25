@@ -1,0 +1,21 @@
+{
+    "name": "LevelsAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:92d1b4f2a86273345acaa78fb73e3e9f",
+        "GUID:8ec67d4c60d0f85489fe1f1bfb3431f9",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:017587dea7467704191bbc8ae7b3473d",
+        "GUID:26b25247276d4254486df820171bea78"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

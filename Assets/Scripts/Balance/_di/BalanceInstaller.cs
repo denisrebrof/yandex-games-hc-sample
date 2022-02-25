@@ -11,7 +11,15 @@ namespace Balance._di
     {
         public override void InstallBindings()
         {
-            Container.Bind<IBalanceRepository>().To<PlayerPrefsBalanceRepository>().AsSingle();
+            Container
+                .Bind<IBalanceRepository>()
+#if PLAYER_PREFS_STORAGE
+                .To<PlayerPrefsBalanceRepository>()
+#else
+                .To<LocalStorageBalanceRepository>()
+#endif
+                .AsSingle();
+            
             Container.Bind<IRewardRepository>().To<RewardInMemoryRepository>().AsSingle();
             Container.Bind<DecreaseBalanceUseCase>().AsSingle();
             Container.Bind<CollectRewardUseCase>().AsSingle();

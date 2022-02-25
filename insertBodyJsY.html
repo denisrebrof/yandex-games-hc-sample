@@ -1,72 +1,92 @@
-<!-- Запуск рекламы при старте игры -->
-<script type="text/javascript">
-    var player;
-    var sdk;
-    var payments = null;
+        <!-- Запуск рекламы при старте игры -->
+        <script type="text/javascript">
+              var player;
+              var sdk;
+              var payments = null;
 
-    YaGames.init({
-        adv: {
-            onAdvClose: wasShown => {
-                console.info('adv closed!');
-            }
-        }
-    }).then(ysdk => {
-        sdk = ysdk;
-        <!--Start ad off-->
-        <!--sdk.adv.showFullscreenAdv({ callbacks: {} });-->
-    });
-</script>
-
-<script>
-    function showFullscreenAd() {
-        sdk.adv.showFullscreenAdv({
-            callbacks: {
-                onClose: function (wasShown) {
-                    window.unityInstance.SendMessage('YandexSDK', 'OnInterstitialShown');
-                },
-                onError: function (error) {
-                    window.unityInstance.SendMessage('YandexSDK', 'OnInterstitialFailed', JSON.stringify(error));
+              YaGames.init({
+                adv: {
+                  onAdvClose: wasShown => {
+                    console.info('adv closed!');
+                  }
                 }
-            }
-        })
-    }
-</script>
+              }).then(ysdk => {
+                  sdk = ysdk;
+                  sdk.adv.showFullscreenAdv({ callbacks: {} });
+                });
+        </script>
 
-<script>
-    function showRewardedAd(id) {
-        sdk.adv.showRewardedVideo({
-            callbacks: {
-                onOpen: () => {
-                    window.unityInstance.SendMessage('YandexSDK', 'OnRewardedOpen', id);
-                    console.log('Video ad open. Id: ' + id);
-                },
-                onRewarded: () => {
-                    window.unityInstance.SendMessage('YandexSDK', 'OnRewarded', id);
-                    console.log('Rewarded! Id: ' + id);
-                },
-                onClose: () => {
-                    window.unityInstance.SendMessage('YandexSDK', 'OnRewardedClose', id);
-                    console.log('Video ad closed. Id: ' + id);
-                },
-                onError: (e) => {
-                    var data = {"id": id, "error": error};
-                    window.unityInstance.SendMessage('YandexSDK', 'OnRewardedError', JSON.stringify(data));
-                    console.log('Error while open video ad:', e);
+        <!-- Обработка рекламы в нужное время -->
+        <script>
+              function showFullscreenAd() {
+                sdk.adv.showFullscreenAdv({
+                  callbacks: {
+                    onClose: function (wasShown) {
+                      window.unityInstance.SendMessage('YandexSDK', 'OnInterstitialShown');
+                    },
+                    onError: function (error) {
+                      window.unityInstance.SendMessage('YandexSDK', 'OnInterstitialFailed', JSON.stringify(error));
+                    }
+                  }
+                })
+              }
+        </script>
+
+        <!-- Обработка рекламы за вознаграждение -->
+        <script>
+              function showRewardedAd(id) {
+                sdk.adv.showRewardedVideo({
+                  callbacks: {
+                    onOpen: () => {
+                      window.unityInstance.SendMessage('YandexSDK', 'OnRewardedOpen', id);
+                      console.log('Video ad open. Id: ' + id);
+                    },
+                    onRewarded: () => {
+                      window.unityInstance.SendMessage('YandexSDK', 'OnRewarded', id);
+                      console.log('Rewarded! Id: ' + id);
+                    },
+                    onClose: () => {
+                      window.unityInstance.SendMessage('YandexSDK', 'OnRewardedClose', id);
+                      console.log('Video ad closed. Id: ' + id);
+                    },
+                    onError: (e) => {
+                      var data = { "id": id, "error": error };
+                      window.unityInstance.SendMessage('YandexSDK', 'OnRewardedError', JSON.stringify(data));
+                      console.log('Error while open video ad:', e);
+                    }
+                  }
+                })
+              }
+        </script>
+
+        <!-- Получение языка -->
+        <script>
+              function getLang() {
+                return sdk.environment.browser.lang
+              }
+        </script>
+
+		<!-- Получение устройства -->
+        <script>
+              function getDeviceType() {
+                return sdk.deviceInfo.type
+              }
+        </script>
+
+        <script>
+              function requestPlayerId() {
+                  sdk.getPlayer({ scopes: false }).then(_player => {
+                      var playerId = _player.getUniqueID()
+                      window.unityInstance.SendMessage('YandexSDK', 'OnHandlePlayerId', playerId);
+                  }).catch(err => {
+                        console.log('Error while requestPlayerId:', err);
+                  });
+              }
+        </script>
+
+        <!-- Хит для метрики -->
+        <script>
+                function addHit(eventName) {
+                        ym(86985706, 'hit', "#event-name", { title: eventName});
                 }
-            }
-        })
-    }
-</script>
-
-<script>
-    function getLang() {
-        return sdk.environment.browser.lang
-    }
-</script>
-
-<script>
-    function getDeviceType() {
-        return sdk.deviceInfo.type
-    }
-</script>
-
+        </script>

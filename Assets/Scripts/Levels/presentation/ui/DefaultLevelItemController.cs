@@ -1,5 +1,4 @@
-﻿using Levels.domain;
-using Levels.domain.repositories;
+﻿using Levels.domain.repositories;
 using Zenject;
 
 namespace Levels.presentation.ui

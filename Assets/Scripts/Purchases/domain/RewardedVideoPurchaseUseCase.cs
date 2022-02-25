@@ -1,41 +1,45 @@
 ﻿using System;
 using Purchases.domain.repositories;
+using UniRx;
 using Zenject;
 
 namespace Purchases.domain
 {
     public class RewardedVideoPurchaseUseCase
     {
-        [Inject] private IRewardedVideoPurchasePresenterAdapter rewardedVideoPurchasePresenterAdapter;
+        [Inject] private IRewardedVideoPurchasePresenterAdapter adapter;
         [Inject] private IRewardedVideoPurchaseRepository rewardedVideoPurchaseRepository;
         [Inject] private PurchasedStateUseCase purchasedStateUseCase;
+
+        public IObservable<ShowRewardedVideoResult> LaunchRewardedVideo(long purchaseId) => adapter
+            ?.ShowRewarded()
+            .SelectMany(result =>
+                GetPurchaseShowVideoResult(result, purchaseId)
+            );
+
+        private IObservable<ShowRewardedVideoResult> GetPurchaseShowVideoResult(bool videoShown, long purchaseId)
+        {
+            if (!videoShown)
+                return Observable.Return(ShowRewardedVideoResult.Failure);
+
+            rewardedVideoPurchaseRepository.AddRewardedVideoWatch(purchaseId);
+            return purchasedStateUseCase
+                .GetPurchasedState(purchaseId)
+                .Select(purchased =>
+                    purchased ? ShowRewardedVideoResult.Purchased : ShowRewardedVideoResult.InProgress
+                );
+        }
+
+        public interface IRewardedVideoPurchasePresenterAdapter
+        {
+            public IObservable<bool> ShowRewarded();
+        }
 
         public enum ShowRewardedVideoResult
         {
             Purchased,
             InProgress,
             Failure
-        }
-
-        public void LaunchRewardedVideo(long purchaseId, Action<ShowRewardedVideoResult> callback)
-        {
-            rewardedVideoPurchasePresenterAdapter?.ShowInterstitial(delegate(bool result)
-            {
-                if (!result)
-                {
-                    callback.Invoke(ShowRewardedVideoResult.Failure);
-                    return;
-                }
-
-                rewardedVideoPurchaseRepository.AddRewardedVideoWatch(purchaseId);
-                var completed = purchasedStateUseCase.GetPurchasedState(purchaseId);
-                callback.Invoke(completed ? ShowRewardedVideoResult.Purchased : ShowRewardedVideoResult.InProgress);
-            });
-        }
-
-        public interface IRewardedVideoPurchasePresenterAdapter
-        {
-            public void ShowInterstitial(Action<bool> successCallback);
         }
     }
 }

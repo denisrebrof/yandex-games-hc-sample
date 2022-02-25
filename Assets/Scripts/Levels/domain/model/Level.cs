@@ -6,14 +6,12 @@ namespace Levels.domain.model
     {
         public long ID;
         public int Number;
-        public bool CompletedState = false;
         public int Reward = 0;
 
-        public Level(long id, int number, bool completedState, int reward)
+        public Level(long id, int number, int reward)
         {
             ID = id;
             Number = number;
-            CompletedState = completedState;
             Reward = reward;
         }
     }

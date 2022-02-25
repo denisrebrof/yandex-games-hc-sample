@@ -7,11 +7,13 @@ namespace Levels.presentation.ui
     [RequireComponent(typeof(Button))]
     public class CompleteCurrentLevelDebugButton : MonoBehaviour
     {
-        [Inject] private ILevelCompletionHandler levelCompletionHandler;
+        [Inject] private ILevelCompletedListener levelCompletedListener;
 
         private void Start()
         {
-            GetComponent<Button>().onClick.AddListener(() => levelCompletionHandler.CompleteCurrentLevel());
+            GetComponent<Button>().onClick.AddListener(
+                () => levelCompletedListener.CompleteCurrentLevel()
+            );
         }
     }
 }

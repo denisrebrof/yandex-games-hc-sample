@@ -1,13 +1,16 @@
 using UnityEngine;
 
-public class SocialBlock : MonoBehaviour
+namespace Social
 {
-    void Start()
+    public class SocialBlock : MonoBehaviour
     {
+        private void Start()
+        {
 #if VK_SDK
         return;
 #else
-        DestroyImmediate(gameObject);
+            DestroyImmediate(gameObject);
 #endif
+        }
     }
 }

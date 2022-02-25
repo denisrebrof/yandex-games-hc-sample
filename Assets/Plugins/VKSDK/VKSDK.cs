@@ -1,10 +1,10 @@
-using System;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
-public class VKSDK : MonoBehaviour
+namespace Plugins.VKSDK
 {
-    public static VKSDK instance;
+    public class VKSDK : MonoBehaviour
+    {
+        public static VKSDK instance;
 
 #if VK_SDK
 
@@ -70,4 +70,5 @@ public class VKSDK : MonoBehaviour
     }
 
 #endif
+    }
 }

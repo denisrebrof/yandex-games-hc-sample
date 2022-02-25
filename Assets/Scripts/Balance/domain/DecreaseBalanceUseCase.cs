@@ -1,4 +1,6 @@
-﻿using Balance.domain.repositories;
+﻿using System;
+using Balance.domain.repositories;
+using UniRx;
 using Zenject;
 
 namespace Balance.domain
@@ -7,12 +9,20 @@ namespace Balance.domain
     {
         [Inject] private IBalanceRepository repository;
 
-        public bool GetCanDecrease(int value) => repository.GetBalance() > value;
+        public IObservable<bool> GetCanDecrease(int value) => repository
+            .GetBalance()
+            .Select(balance => balance >= value);
 
         // bool
-        public DecreaseBalanceResult Decrease(int value)
+        public IObservable<DecreaseBalanceResult> Decrease(int value) => GetCanDecrease(value)
+            .Take(1)
+            .Select(canDecrease =>
+                DecreaseBalance(canDecrease, value)
+            );
+
+        private DecreaseBalanceResult DecreaseBalance(bool canDecrease, int value)
         {
-            if (!GetCanDecrease(value))
+            if (!canDecrease)
                 return DecreaseBalanceResult.LowBalance;
 
             repository.Remove(value);
@@ -23,7 +33,7 @@ namespace Balance.domain
         {
             Success,
             LowBalance,
-            Failure
+            UnexpectedFailure
         }
     }
 }

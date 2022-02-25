@@ -5,17 +5,17 @@ using Zenject;
 
 namespace RewardedVideo._di
 {
-    public class RewardedVideoPresentationInstaller : MonoInstaller
+    public class RewardedVideoPresentationInstaller: MonoInstaller
     {
-        [SerializeField] private YandexRewardedVideoPresenter presenter;
-
-        public override void InstallBindings()
-        {
-            //Presenters
-            Container
-                .Bind<IRewardedVideoPresenter>()
-                .FromInstance(presenter)
-                .AsSingle();
-        }
+        [SerializeField] private YandexRewardedVideoNavigator navigator;
+                
+            public override void InstallBindings()
+            {
+                //Presenters
+                Container
+                    .Bind<IRewardedVideoNavigator>()
+                    .To<StubRewardedVideoNavigator>()
+                    .AsSingle();
+            }
     }
 }

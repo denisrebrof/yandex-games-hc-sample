@@ -1,13 +1,15 @@
-﻿using Levels.domain;
+﻿using System;
 using Levels.domain.repositories;
 using Purchases.domain;
 using Zenject;
 
 namespace Purchases.adapters
 {
-    public class LevelPassedStateProviderAdapter : PurchasedStateUseCase.ILevelPassedStateProvider
+    public class LevelPassedStateProviderAdapter : ILevelPassedStateProvider
     {
-        [Inject] private ILevelsRepository levelsRepository;
-        public bool GetLevelPassedState(long levelId) => levelsRepository.GetLevel(levelId).CompletedState;
+        [Inject] private ILevelCompletedStateRepository completedStateRepository;
+
+        public IObservable<bool> GetLevelPassedState(long levelId) => completedStateRepository
+            .GetLevelCompletedState(levelId);
     }
 }

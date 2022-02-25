@@ -9,6 +9,7 @@ namespace Levels.domain
     {
         [Inject] private ILevelsRepository levelsRepository;
         [Inject] private ICurrentLevelRepository currentLevelRepository;
+        [Inject] private ILevelCompletedStateRepository сompletedStateRepository;
 
         public void SetNextCurrentLevel()
         {
@@ -28,10 +29,9 @@ namespace Levels.domain
             if (nextLevels.Count == 0)
                 return currentLevel;
 
-            if (nextLevels.All(level => level.CompletedState))
-                return nextLevels.First();
-
-            return nextLevels.First(level => !level.CompletedState);
+            return nextLevels.All(level => сompletedStateRepository.GetLevelCompletedStateValue(level.ID))
+                ? nextLevels.First()
+                : nextLevels.First(level => !сompletedStateRepository.GetLevelCompletedStateValue(level.ID));
         }
     }
 }

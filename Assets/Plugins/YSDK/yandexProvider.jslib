@@ -16,12 +16,17 @@ mergeInto(LibraryManager.library, {
   },
 
   ShowFullscreenAd: function () {
-    showFullscrenAd();
+    showFullscreenAd();
   },
 
   ShowRewardedAd: function(placement) {
     showRewardedAd(placement);
     return placement;
+  },
+
+  Hit: function(ename) {
+      console.log('Hit');
+      addHit(ename);
   },
 
   OpenWindow: function(link){
@@ -47,5 +52,11 @@ mergeInto(LibraryManager.library, {
     var buffer = _malloc(bufferSize);
     stringToUTF8(returnStr, buffer, bufferSize);
     return buffer;
+  },
+
+  RequestPlayerId: function() {
+    console.log('request player id in jslib 1');
+    requestPlayerId();
+    console.log('requested player id in jslib 2');
   }
 });

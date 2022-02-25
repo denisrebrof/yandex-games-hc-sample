@@ -1,16 +1,18 @@
 using Levels.domain.repositories;
-using Levels.presentation;
 using UnityEngine;
 using Zenject;
 
-public class LevelSpawner : MonoBehaviour
+namespace Levels.presentation
 {
-    [Inject] private ICurrentLevelRepository currentLevelRepository;
-    [Inject] private LevelLoadingController levelLoadingController;
-
-    private void Awake()
+    public class LevelSpawner : MonoBehaviour
     {
-        var currentLevel = currentLevelRepository.GetCurrentLevel();
-        levelLoadingController.LoadLevel(currentLevel.ID);
+        [Inject] private ICurrentLevelRepository currentLevelRepository;
+        [Inject] private LevelLoadingController levelLoadingController;
+
+        private void Awake()
+        {
+            var currentLevel = currentLevelRepository.GetCurrentLevel();
+            levelLoadingController.LoadLevel(currentLevel.ID);
+        }
     }
 }

@@ -7,6 +7,5 @@ namespace Levels.domain.repositories
     {
         List<Level> GetLevels();
         Level GetLevel(long levelId);
-        void SetLevelCompleted(long levelId);
     }
 }

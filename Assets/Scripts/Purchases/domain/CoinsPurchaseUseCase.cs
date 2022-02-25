@@ -1,5 +1,6 @@
-﻿using Purchases.domain.adapters;
+﻿using System;
 using Purchases.domain.repositories;
+using UniRx;
 using Zenject;
 
 namespace Purchases.domain
@@ -7,21 +8,35 @@ namespace Purchases.domain
     public class CoinsPurchaseUseCase
     {
         [Inject] private ICoinsPurchaseRepository coinsPurchaseRepository;
-        [Inject] private IPurchasePaymentHandler purchasePaymentHandler;
+        [Inject] private IBalanceAccessProvider balanceAccessProvider;
 
-        public CoinsPurchaseResult ExecutePurchase(long purchaseId)
+        public IObservable<CoinsPurchaseResult> ExecutePurchase(long purchaseId) => coinsPurchaseRepository
+            .GetPurchasedState(purchaseId)
+            .Take(1)
+            .SelectMany(state =>
+                state ? Observable.Return(CoinsPurchaseResult.AlreadyPurchased) : ExecuteNewPurchase(purchaseId)
+            );
+
+        private IObservable<CoinsPurchaseResult> ExecuteNewPurchase(long purchaseId)
         {
-            var purchasedState = coinsPurchaseRepository.GetPurchasedState(purchaseId);
-            if (purchasedState)
-                return CoinsPurchaseResult.AlreadyPurchased;
-
             var cost = coinsPurchaseRepository.GetCost(purchaseId);
-            var paymentResult = purchasePaymentHandler.ExecutePayment(cost);
-            if (paymentResult != IPurchasePaymentHandler.PurchasePaymentResult.Success)
-                return CoinsPurchaseResult.Failure;
+            return balanceAccessProvider
+                .CanRemove(cost)
+                .Take(1)
+                .SelectMany(enoughBalance =>
+                    {
+                        if (!enoughBalance) return Observable.Return(CoinsPurchaseResult.Failure);
+                        return balanceAccessProvider.Remove(cost).Select(result =>
+                            {
+                                if (!result)
+                                    return CoinsPurchaseResult.Failure;
 
-            coinsPurchaseRepository.SetPurchased(purchaseId);
-            return CoinsPurchaseResult.Success;
+                                coinsPurchaseRepository.SetPurchased(purchaseId);
+                                return CoinsPurchaseResult.Success;
+                            }
+                        );
+                    }
+                );
         }
 
         public enum CoinsPurchaseResult

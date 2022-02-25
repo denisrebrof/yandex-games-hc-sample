@@ -1,5 +1,4 @@
-﻿using Levels.domain;
-using Levels.domain.model;
+﻿using Levels.domain.model;
 using Levels.domain.repositories;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +10,7 @@ namespace Levels.presentation.ui
     {
         [Inject] private ILevelItemController itemController;
         [Inject] private ILevelsRepository levelsRepository;
+        [Inject] private ILevelCompletedStateRepository completedStateRepository;
 
         [SerializeField] private Text numberText;
         [SerializeField] private GameObject checkmark;
@@ -36,7 +36,7 @@ namespace Levels.presentation.ui
         {
             levelId = level.ID;
             numberText.text = level.Number.ToString();
-            checkmark.SetActive(level.CompletedState);
+            checkmark.SetActive(completedStateRepository.GetLevelCompletedStateValue(level.ID));
         }
 
         public void HandleClick()
@@ -49,6 +49,8 @@ namespace Levels.presentation.ui
             void OnItemClick(long levelId);
         }
 
-        public class Factory : PlaceholderFactory<LevelItem> { }
+        public class Factory : PlaceholderFactory<LevelItem>
+        {
+        }
     }
 }

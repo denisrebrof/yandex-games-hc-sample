@@ -3,11 +3,10 @@ using Balance.domain;
 using Balance.domain.repositories;
 using Doozy.Engine;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Balance.presentation
+namespace Balance.presentation.ui
 {
     public class CollectRewardView : MonoBehaviour
     {

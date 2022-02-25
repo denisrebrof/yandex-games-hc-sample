@@ -1,19 +1,21 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
-[RequireComponent(typeof(Button))]
-public class InviteButton : MonoBehaviour
+namespace Social
 {
-    void Start()
+    [RequireComponent(typeof(Button))]
+    public class InviteButton : MonoBehaviour
     {
-        GetComponent<Button>().onClick.AddListener(Invite);
-    }
+        void Start()
+        {
+            GetComponent<Button>().onClick.AddListener(Invite);
+        }
 
-    private void Invite()
-    {
+        private void Invite()
+        {
 #if VK_SDK
         VKSDK.instance.ShowInvite();
 #endif
+        }
     }
 }

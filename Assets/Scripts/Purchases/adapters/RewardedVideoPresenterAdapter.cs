@@ -2,16 +2,17 @@
 using Purchases.domain;
 using RewardedVideo.domain;
 using RewardedVideo.domain.model;
+using UniRx;
 using Zenject;
 
 namespace Purchases.adapters
 {
-    public class RewardedVideoPurchasePresenterAdapter: RewardedVideoPurchaseUseCase.IRewardedVideoPurchasePresenterAdapter
+    public class RewardedVideoPresenterAdapter : RewardedVideoPurchaseUseCase.IRewardedVideoPurchasePresenterAdapter
     {
-        [Inject] private IRewardedVideoPresenter rewardedVideoPresenter;
-        public void ShowInterstitial(Action<bool> successCallback)
-        {
-            rewardedVideoPresenter.ShowRewardedVideo(result => successCallback.Invoke(result==ShowRewardedVideoResult.Success));
-        }
+        [Inject] private IRewardedVideoNavigator rewardedVideoNavigator;
+
+        public IObservable<bool> ShowRewarded() => rewardedVideoNavigator
+            .ShowRewardedVideo()
+            .Select(result => result == ShowRewardedVideoResult.Success);
     }
 }

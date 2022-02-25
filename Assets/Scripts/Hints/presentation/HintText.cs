@@ -1,27 +1,29 @@
-using System;
 using Hints.domain;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-[RequireComponent(typeof(Text))]
-public class HintText : MonoBehaviour
+namespace Hints.presentation
 {
-    [Inject] private ICurrentHintRepository repository;
-    private Text target;
-
-    private void Awake() => target = GetComponent<Text>();
-
-    private void OnEnable() => Update();
-
-    public void Update()
+    [RequireComponent(typeof(Text))]
+    public class HintText : MonoBehaviour
     {
-        try
+        [Inject] private ICurrentHintRepository repository;
+        private Text target;
+
+        private void Awake() => target = GetComponent<Text>();
+
+        private void OnEnable() => Update();
+
+        public void Update()
         {
-            target.text = repository.GetHintText();
-        }
-        catch
-        {
+            try
+            {
+                target.text = repository.GetHintText();
+            }
+            catch
+            {
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Sound._di
     {
         public override void InstallBindings()
         {
-            Container.Bind<ISoundPrefsRepository>().To<SoundPrefsPlayerPrefsRepository>().FromNew().AsSingle();
+            Container.Bind<ISoundPrefsRepository>().To<PlayerPrefsSoundPrefsRepository>().FromNew().AsSingle();
         }
     }
 }

@@ -13,7 +13,6 @@ namespace Levels.data
     public class LevelsRepository : ILevelsRepository, ILevelSceneObjectRepository
     {
         [Inject] private ILevelsDao levelsDao;
-        [Inject] private ILevelCompletedStateDao completedStateDao;
 
         public List<Level> GetLevels() => levelsDao.GetLevelEntities().Select(GetLevel).ToList();
 
@@ -24,15 +23,12 @@ namespace Levels.data
             return GetLevel(entity, index);
         }
 
-        public void SetLevelCompleted(long levelId) => completedStateDao.SetCompleted(levelId);
-
         public GameObject GetLevelScene(long levelId) => GetById(levelId).scenePrefab;
 
-        private Level GetLevel(LevelEntity entity, int number)
+        private Level GetLevel(LevelEntity entity, int index)
         {
-            var id = Convert.ToInt64(number);
-            var completed = completedStateDao.IsCompleted(id);
-            return new Level(id, number, completed, entity.reward);
+            var id = Convert.ToInt64(index);
+            return new Level(id, index + 1, entity.reward);
         }
 
         private LevelEntity GetById(long levelId)
