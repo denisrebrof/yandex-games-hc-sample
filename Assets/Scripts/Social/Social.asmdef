@@ -1,0 +1,17 @@
+{
+    "name": "Social",
+    "rootNamespace": "",
+    "references": [
+        "GUID:00e18f910168e7a459d1788c2eb1f8ab",
+        "GUID:caf5f571b8a96dc42ae8d85b247ec6dd"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
